@@ -1,0 +1,17 @@
+header {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  height: 400px;
+  width: 100%;
+  margin-top: 120px;
+  color: rgb(0, 0, 0);
+  
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  background-color: rgb(0, 95, 95);
+  background-image: url("https://www.transparenttextures.com/patterns/gun-metal.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}

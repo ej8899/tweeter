@@ -1,0 +1,31 @@
+nav {
+  font-family: 'Bungee', cursive;
+  height: 120px;
+  width: 100%;
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  background-color: teal;
+}
+
+.logo {
+  display: flex;
+  text-align: end;
+  flex-wrap: wrap;
+  font-size: 2.25rem;
+  font-family: 'Bungee', sans-serif;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.writenew {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
+  vertical-align: middle;
+  justify-content: center;
+}

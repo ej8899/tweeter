@@ -15,11 +15,23 @@ html {
  */
 
 body {
+  display: flex;
   color: #545149;
   background-color: #f4f1ec;
   font-size: 24px;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+
+main {
+  margin-top: 120px;
+  display:flex;
+  width: 90%
+  height: auto;
+  margin: 1em 5% 0 5%;
+  text-align: center;
+}
