@@ -42,10 +42,12 @@ $(document).ready(function() {
       "Everything you can imagine is real.",
       "Simplicity is the ultimate sophistication.",
       "How do you keep a fool in suspense?",
-      "What do you call a magic dog? A labracadabrador."
+      "What do you call a magic dog? A labracadabrador.",
+      "Lorem Ipsum has roots in a piece of classical Latin literature from 45 BC?",
+      "Aliens exist.  Change my mind.",
     ];
     let rando = randomNumber(0,randomQuotes.length);
     
-    $('#tweet-text').val(randomQuotes[rando - 1]);
+    $('#tweet-text').val(randomQuotes[rando]);
   });
 });

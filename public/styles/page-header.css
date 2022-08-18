@@ -1,3 +1,9 @@
+/*
+
+CSS for body header / (user and large avatar)
+
+*/
+
 header {
   display:flex;
   flex-direction: column;
