@@ -17,8 +17,11 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/newtweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/page-header.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tweets-new.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tweets-layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/page-footer.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tooltips.css" type="text/css" />
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -29,6 +32,7 @@
   </head>
 
   <body>
+    
     <!-- START: TOP NAV BAR-->
     <nav class="nav">
       <span class="logo">tweeter</span>
@@ -36,6 +40,7 @@
     </nav>
     <!-- END: TOP NAV BAR -->
 
+  
     <!-- start: top header w image and name -->
     <header>
       <div>
@@ -48,23 +53,59 @@
     <!-- end: top header -->
 
   
-  
     <!-- start: MAIN section-->
     <main class="container">
 
+      <!-- start: create a tweet form -->
       <section class="new-tweet">
-        <h2>Compose Tweet</h2>
         <form action="/tweets" method="POST" class="new-tweet-form">
           <label for="tweet-text">What are you humming about?</label>
           <textarea name="text" id="tweet-text"></textarea>
           <div>
-            <button type="submit" id="submit">Tweet</button>
+            <button type="submit" id="submit">TWEET</button>
+            <i class="fa-solid fa-shuffle icon tooltip" id="randomizer"><span class="tooltiptext">random message!</span></i>
             <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
         </form>
       </section>
+      <!-- end: create a tweet form -->
       
+      <BR><BR> <!-- TODO - remove these -->
+
+      <!-- START: section for showing tweets -->
+      <section id="tweets-container">
+        <article class="tweets-layout">
+          <div class="tweets-header">
+            <div>icon</div>
+            <div>@name</div>
+          </div>
+        
+        <div class="tweets-message">this is a sample tweet message</div>
+
+        <footer class="tweets-footer">
+        <div>this is a tweet date stampt</div>
+        <div>
+          <i class="fa-solid fa-flag icon tooltip"><span class="tooltiptext">file a complaint</span></i>&nbsp;<i class="fa-solid fa-retweet icon tooltip"><span class="tooltiptext">re-tweeter this</span></i>&nbsp;<i class="fa-solid fa-heart icon tooltip"><span class="tooltiptext">like this</span></i>
+        </div>
+        </footer>
+        </article>
+      </section>
+      <br clear="all">
+      <br clear="all">
+      <!-- END: section for showing tweets -->
+
     </main>
     <!-- END: MAIN SECTION -->
+   
+
+    <footer class="page-footer">
+      <div class="page-footer-blocks"><small>
+        <i class="fa-solid fa-copyright"></i> 2022. All rights reserved.
+      </small></div>
+      <div class="page-footer-blocks">        
+          <a href="https://github.com/ej8899/tweeter"><i class="fa-brands fa-square-github icon"></i></a>&nbsp;<i class="fa-brands fa-square-twitter icon"></i>&nbsp;<i class="fa-brands fa-linkedin icon"></i>&nbsp;<i class="fa-solid fa-envelope icon"></i>
+      </div>
+    </footer>
+
   </body>
 </html>

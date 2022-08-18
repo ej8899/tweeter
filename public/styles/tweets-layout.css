@@ -1,0 +1,56 @@
+/*
+
+CSS for tweets-container
+
+*/
+
+#tweets-container {
+  display:flex;
+  width: 90%;
+  
+  font-family: sans-serif;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tweets-header {
+  display:flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.tweets-layout {
+  display:flex;
+  flex-direction: column;
+  width: 90%;
+  background-color:#e7cda2;
+  font-family: sans-serif;
+  border-style: groove;
+  align-items: center;
+  border-radius: 10px;
+  border: 2px solid teal;
+  padding: 20px;
+}
+.tweets-layout:hover {
+  box-shadow: 5px 5px rgba(0, 128, 128, 0.511);
+}
+
+.tweets-message {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+}
+
+.tweets-footer {
+  display: flex;
+  border-style: solid none none none;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8em;
+  margin-top: 5px;
+  padding-top: 5px;
+}

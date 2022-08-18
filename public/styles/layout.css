@@ -11,27 +11,39 @@ html {
 }
 
 /*
- * Global layout stuff
+ * Global layout components
  */
 
 body {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
   color: #545149;
-  background-color: #f4f1ec;
+  background-color: rgba(73, 143, 143, 0.536);
   font-size: 24px;
   font-family: 'Source Sans Pro', sans-serif;
+  height: 100vh;
+  align-items: center;
 }
-
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
 
 
 main {
   margin-top: 120px;
   display:flex;
-  width: 90%
+  flex-direction: column;
+  width: 90%;
   height: auto;
   margin: 1em 5% 0 5%;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  color:#545149;
+}
+.icon:hover {
+  color:#FD5901;
 }

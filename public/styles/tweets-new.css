@@ -1,8 +1,13 @@
+/*
+
+  CSS for new tweets area
+
+*/
+
 .new-tweet {
   display:flex;
   flex-direction: column;
   width: 90%;
-  background-color:#f4f1ec;
   font-family: sans-serif;
 }
 
@@ -11,12 +16,12 @@
   flex-direction: column;
 }
 
-
 #tweet-text {
   background-color: #f4f1ec;
   border: hidden;
   border-bottom: 3px solid black;
   margin-bottom: 5px;
+  
 }
 
 .new-tweet-footer {
@@ -29,14 +34,13 @@
 }
 
 #submit {  
-  background-color: #162966;
-  color: white;
-  border-style:groove;
-  font-weight: bolder;
+  background-color: #FD5901;
+  color: black;
+  font-family: 'Bungee', cursive;
 }
 
 #submit:hover {  
-  background-color: lightsteelblue;
+  background-color: rgb(236, 162, 42);
 }
 
 .toomanychars {
