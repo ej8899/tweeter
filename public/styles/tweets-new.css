@@ -16,31 +16,50 @@
   flex-direction: column;
 }
 
-#tweet-text {
+
+#newtweet-text {
   background-color: #f4f1ec;
   border: hidden;
   border-bottom: 3px solid black;
-  margin-bottom: 5px;
-  
+  margin-bottom: 5px;  
 }
 
-.new-tweet-footer {
+.newtweet-textarea {
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 5px solid #545149;
+  border-style: none none solid ;
+  border-radius: 5px;
+  background-color: #f3b860c9;
+  font-size: 16px;
+  resize: none;
+}
+
+.newtweet-label {
+  display:flex;
+  flex-direction: row;
+  align-items: left;
+}
+
+.newtweet-footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   font-family: 'Bungee', sans-serif;
   font-size: 24px;
   margin-top: 5px; 
 }
 
 #submit {  
-  background-color: #FD5901;
+  background-color: rgb(236, 162, 42);
   color: black;
   font-family: 'Bungee', cursive;
 }
 
 #submit:hover {  
-  background-color: rgb(236, 162, 42);
+  background-color: #FD5901;
 }
 
 .toomanychars {

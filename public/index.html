@@ -35,7 +35,7 @@
     
     <!-- START: TOP NAV BAR-->
     <nav class="nav">
-      <span class="logo">tweeter</span>
+      <span class="logo"><IMG SRC="./images/logo.png" width="120" height="120">tweeter</span>
       <Span class="writenew" style="font-family: 'Source Sans Pro', sans-serif;">Write a new tweet<br><i class="fa-solid fa-angles-down"></i></Span>
     </nav>
     <!-- END: TOP NAV BAR -->
@@ -47,7 +47,7 @@
           <img src="/images/profile-hex.png">
       </div>
       <div>
-          <h2>Your Name</h2>
+          <h2>Ernie Johnson</h2>
       </div>
     </header>
     <!-- end: top header -->
@@ -59,13 +59,19 @@
       <!-- start: create a tweet form -->
       <section class="new-tweet">
         <form action="/tweets" method="POST" class="new-tweet-form">
-          <label for="tweet-text">What are you humming about?</label>
-          <textarea name="text" id="tweet-text"></textarea>
-          <div>
-            <button type="submit" id="submit">TWEET</button>
-            <i class="fa-solid fa-shuffle icon tooltip" id="randomizer"><span class="tooltiptext">random message!</span></i>
-            <output name="counter" class="counter" for="tweet-text">140</output>
+          <!-- START NEW TWEET BODY -->
+          <label for="newtweet-text" class="newtweet-label">What are you humming about?</label>
+          <textarea name="text" id="tweet-text" class="newtweet-textarea"></textarea>
+          <!-- END NEW TWEET BODY -->
+          <!-- START NEW TWEET FOOTER -->
+          <div class="newtweet-footer">
+            <div><button type="submit" id="submit">TWEET</button>
+            </div>
+            <div><i class="fa-solid fa-shuffle icon tooltip" id="randomizer"><span class="tooltiptext">click for random message!</span></i>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+            <output name="counter" class="counter tooltip" for="tweet-text">140<span class="tooltiptext">characters remaining</span></output>
+            </div>
           </div>
+          <!-- END NEW TWEET FOOTER -->
         </form>
       </section>
       <!-- end: create a tweet form -->
@@ -76,14 +82,14 @@
       <section id="tweets-container">
         <article class="tweets-layout">
           <div class="tweets-header">
-            <div>icon</div>
-            <div>@name</div>
+            <div><i class="fa-solid fa-tent"></i> MountainCamper</div>
+            <div>@mountainCamper44</div>
           </div>
         
         <div class="tweets-message">this is a sample tweet message</div>
 
         <footer class="tweets-footer">
-        <div>this is a tweet date stampt</div>
+        <div>2 hours ago</div>
         <div>
           <i class="fa-solid fa-flag icon tooltip"><span class="tooltiptext">file a complaint</span></i>&nbsp;<i class="fa-solid fa-retweet icon tooltip"><span class="tooltiptext">re-tweeter this</span></i>&nbsp;<i class="fa-solid fa-heart icon tooltip"><span class="tooltiptext">like this</span></i>
         </div>
@@ -103,7 +109,7 @@
         <i class="fa-solid fa-copyright"></i> 2022. All rights reserved.
       </small></div>
       <div class="page-footer-blocks">        
-          <a href="https://github.com/ej8899/tweeter"><i class="fa-brands fa-square-github icon"></i></a>&nbsp;<i class="fa-brands fa-square-twitter icon"></i>&nbsp;<i class="fa-brands fa-linkedin icon"></i>&nbsp;<i class="fa-solid fa-envelope icon"></i>
+          <a href="https://github.com/ej8899/tweeter"><i class="fa-brands fa-square-github icon tooltip"><span class="tooltiptext">click for our github profile</span></i></a>&nbsp;<i class="fa-brands fa-square-twitter icon"></i>&nbsp;<i class="fa-brands fa-linkedin icon"></i>&nbsp;<i class="fa-solid fa-envelope icon"></i>
       </div>
     </footer>
 
