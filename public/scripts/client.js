@@ -51,6 +51,8 @@ const renderTweets = (tweets) => {
 //  take tweet object and return HTML <article>
 //
 const createTweetElement = (tweetData) => {
+  // timeago.format(1473245023718);                 // using timeago library - see index.html for SCRIPT link
+  let timeStamp = timeago.format(tweetData.created_at);
   let tweetContainer = `        <article class="tweets-layout">`;
   tweetContainer += `        <div class="tweets-header">`;
   tweetContainer += `          <div><IMG SRC="${tweetData.user.avatars}"> ${tweetData.user.name}</div>`;
@@ -58,7 +60,7 @@ const createTweetElement = (tweetData) => {
   tweetContainer += `         </div>`;
   tweetContainer += `      <div class="tweets-message">${tweetData.content.text}</div>`;
   tweetContainer += `      <footer class="tweets-footer">`;
-  tweetContainer += `      <div>${tweetData.created_at}</div> `;
+  tweetContainer += `      <div>${timeStamp}</div> `;
   tweetContainer += `      <div>`;
   tweetContainer += `        <i class="fa-solid fa-flag icon tooltip"><span class="tooltiptext">file a complaint</span></i>&nbsp;<i class="fa-solid fa-retweet icon tooltip"><span class="tooltiptext">re-tweeter this</span></i>&nbsp;<i class="fa-solid fa-heart icon tooltip"><span class="tooltiptext">like this</span></i>`;
   tweetContainer += `      </div>`;
@@ -80,15 +82,18 @@ const loadTweets = () => {
   
 $(document).ready(function() {
   
+  // process form submission
   $("#new-tweet-form").submit(function(event) {
+    const maxTweetChars = 140;
     event.preventDefault();
     const newTweet = $(this).serialize();
     $.post("/tweets/", newTweet, () => {          // https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
-      // call back for error checks
-    
+      $(this).find("#tweet-text").val("");        // clear tweet form
+      $(this).find(".counter").val(maxTweetChars);      // reset character counter to max 
       loadTweets();
     });
   });
 
+  // render our page of all tweets in database
   loadTweets();
 });
