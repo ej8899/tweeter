@@ -27,15 +27,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- Internal JS -->
-    <script type="text/javascript" src="/scripts/client.js"></script>
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+    <script type="text/javascript" src="/scripts/client.js" defer></script>
+    
   </head>
 
   <body>
     
     <!-- START: TOP NAV BAR-->
     <nav class="nav">
-      <span class="logo"><IMG SRC="./images/logo.png" width="120" height="120">tweeter</span>
+      <span class="logo"><IMG SRC="./images/logo.png" width="120" height="120">tweetEr</span>
       <Span class="writenew" style="font-family: 'Source Sans Pro', sans-serif;">Write a new tweet<br><i class="fa-solid fa-angles-down"></i></Span>
     </nav>
     <!-- END: TOP NAV BAR -->
@@ -57,7 +58,7 @@
     <main class="container">
       <!-- start: create a tweet form -->
       <section class="new-tweet">
-        <form action="/tweets" method="POST" class="new-tweet-form">
+        <form action="/tweets" method="POST" class="new-tweet-form" id ="new-tweet-form">
           <!-- START NEW TWEET BODY -->
           <label for="newtweet-text" class="newtweet-label">What are you cawing about?</label>
           <textarea name="text" id="tweet-text" class="newtweet-textarea"></textarea>
@@ -78,7 +79,7 @@
       <BR><BR> <!-- TODO - remove these -->
 
       <!-- START: section for showing tweets -->
-
+      
 <!-- SAMPLE TWEET ONLY -->      
       <section id="tweets-container">
         <article class="tweets-layout">
@@ -96,30 +97,31 @@
         </div>
         </footer>
         </article>
+        <br clear="all">
+          <article class="tweets-layout">
+            <div class="tweets-header">
+              <div><i class="fa-solid fa-tent fa-lg"></i> MountainCamper</div>
+              <div>@mountainCamper44</div>
+            </div>
+          
+          <div class="tweets-message">Who wants to go camping?</div>
+  
+          <footer class="tweets-footer">
+          <div>2 hours ago</div>
+          <div>
+            <i class="fa-solid fa-flag icon tooltip"><span class="tooltiptext">file a complaint</span></i>&nbsp;<i class="fa-solid fa-retweet icon tooltip"><span class="tooltiptext">re-tweeter this</span></i>&nbsp;<i class="fa-solid fa-heart icon tooltip"><span class="tooltiptext">like this</span></i>
+          </div>
+          </footer>
+        </article>
       </section>
 
       <br clear="all">
 <!-- SAMPLE TWEET ONLY -->      
-      <section id="tweets-container">
-        <article class="tweets-layout">
-          <div class="tweets-header">
-            <div><i class="fa-solid fa-tent fa-lg"></i> MountainCamper</div>
-            <div>@mountainCamper44</div>
-          </div>
-        
-        <div class="tweets-message">Who wants to go camping?</div>
-
-        <footer class="tweets-footer">
-        <div>2 hours ago</div>
-        <div>
-          <i class="fa-solid fa-flag icon tooltip"><span class="tooltiptext">file a complaint</span></i>&nbsp;<i class="fa-solid fa-retweet icon tooltip"><span class="tooltiptext">re-tweeter this</span></i>&nbsp;<i class="fa-solid fa-heart icon tooltip"><span class="tooltiptext">like this</span></i>
-        </div>
-        </footer>
-        </article>
-      </section>
+      
       
       <br clear="all">
       <br clear="all">
+    
       <!-- END: section for showing tweets -->
 
     </main>
