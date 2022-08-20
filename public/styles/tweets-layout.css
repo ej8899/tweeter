@@ -36,7 +36,7 @@ CSS for tweets-container
   padding: 20px;
 }
 .tweets-layout:hover {
-  box-shadow: 5px 5px rgba(0, 128, 128, 0.511);
+  box-shadow: 0px 0px 20px rgba(0, 128, 128, 0.806);
 }
 
 .tweets-message {
