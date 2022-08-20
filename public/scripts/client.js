@@ -5,35 +5,6 @@
  */
 
 
-
-
-// DELETE FAKE DATA:
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-];
-
-
 //
 // renderTweets
 //
@@ -72,7 +43,6 @@ const createTweetElement = (tweetData) => {
 
 
 const loadTweets = () => {
-  data.length = 0;  // reset our RAM database
   $.get("/tweets/", function(tweetData) {          // https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
     renderTweets(tweetData);
   });
@@ -89,7 +59,7 @@ $(document).ready(function() {
     const newTweet = $(this).serialize();
     $.post("/tweets/", newTweet, () => {          // https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
       $(this).find("#tweet-text").val("");        // clear tweet form
-      $(this).find(".counter").val(maxTweetChars);      // reset character counter to max 
+      $(this).find(".counter").val(maxTweetChars);      // reset character counter to max
       loadTweets();
     });
   });
