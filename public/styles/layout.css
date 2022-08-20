@@ -47,3 +47,31 @@ main {
 .icon:hover {
   color:#FD5901;
 }
+
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:100px;
+	right:40px;
+	background-color:rgb(73, 143, 143);
+	color:#FFF;
+	border-radius:20px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	margin-top:22px;
+}
+
+.float .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 20%;
+  background-color: rgba(255, 0, 0, 0.59);
+  color: white;
+}
