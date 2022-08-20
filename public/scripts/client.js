@@ -6,7 +6,7 @@
 
 
 //
-// renderTweets..
+// renderTweets
 //
 const renderTweets = (tweets) => {
   // loop thru data to build ea tweet then post it
