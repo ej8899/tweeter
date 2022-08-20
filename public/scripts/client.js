@@ -55,10 +55,14 @@ const loadTweets = () => {
 };
 
 
-  
+//
+// document.ready HANDLER
+//
 $(document).ready(function() {
   
+  //
   // process form submission
+  //
   $("#new-tweet-form").submit(function(event) {
     const maxTweetChars = 140;
     event.preventDefault();
@@ -79,12 +83,14 @@ $(document).ready(function() {
     }
   });
 
+  //
   // render our page of all tweets in database
+  //
   loadTweets();
   
-
+  //
   // monitor scrolling so we can update for unread tweets
-  
+  //
   $(window).scroll(function() {
     
     let docHeight = $(document).height();
@@ -96,7 +102,6 @@ $(document).ready(function() {
 
     // update badge for unread tweets
     $('#badge').html(Math.floor(remainingTweets));
-    
   });
 
 }); // end of document.ready
