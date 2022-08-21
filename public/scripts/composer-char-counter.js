@@ -4,7 +4,12 @@
 //  composer-char-counter.js - deal with JS in the input form
 //
 
-
+//
+//  global vars
+//
+const maxTweetChars = 140;      // maximum characters allowed for 'tweets'.
+const errorSlideDownSpeed = 300;    // slider DOWN speed for error drop downs
+const errorSlideUpSpeed = 100;  // slider UP speed for error drop downs
 
 //
 // randomNumer(5,98);
@@ -21,16 +26,16 @@ const fetchDadJoke = function() {
   const apiEndPoint = "https://icanhazdadjoke.com/";
 
   let jqXHR = $.ajax({
-    async: false,
+    async: false,                                           // CAUTION: not the ideal method being used here!  figure out ASYNC!
     url: apiEndPoint,
     beforeSend: function(xhr) {
-      xhr.setRequestHeader("User-Agent","https://github.com/ej8899/tweeter");
+      xhr.setRequestHeader("User-Agent","https://github.com/ej8899/tweeter"); // TODO - this does NOT work - find out how to fix it!!
     },
     contentType: "application/json",
     dataType: 'json',
-    //success: function(data) { alert(data.joke); return (data.joke); }, // - NOTE use ddifferent w. async false - see jqXHR
+    // NOTE use different that below commented section when using async false - see jqXHR object for details
+    // success: function(data) { alert(data.joke); return (data.joke); },
   });
-  //return "((Sorry, no joke available right now!))";
   let response = JSON.parse(jqXHR.responseText);            // https://www.sitepoint.com/jqxhr-object/
   return (response.joke);
 };
@@ -43,9 +48,9 @@ const fetchDadJoke = function() {
 $(document).ready(function() {
   // process character counter counts
   $("#tweet-text").on("input", function() {                       // update character counter in tweet form
-    const maxChar = 140;
+    
     const inputChar = $(this).val().length;
-    const charCounter = maxChar - inputChar;
+    const charCounter = maxTweetChars - inputChar;
 
     const $inputCounter = $(this).parent().find(".counter");
 
@@ -53,17 +58,21 @@ $(document).ready(function() {
     if (charCounter < 0) {
       $inputCounter.addClass("toomanychars");
       $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message is too long!");
-      $("#error-block").slideDown(300);
+      $("#error-block").slideDown(errorSlideDownSpeed);
     } else {
       $inputCounter.removeClass("toomanychars");
-      $("#error-block").slideUp(100);
+      $("#error-block").slideUp(errorSlideUpSpeed);
       $("#tweet-text").css("outline","none");
     }
   });
 
   // user wants a dad joke
   $("#dadjoke").click(function() {
-    $('#tweet-text').val(fetchDadJoke());   // TODO - check for char limit and fetch another if problematic
+    let theJoke = fetchDadJoke();
+    if (theJoke.length > maxTweetChars) {                         // TODO: any errors we should check for?
+      theJoke = "No jokes available right now.";
+    }
+    $('#tweet-text').val(theJoke);
   });
 
   // user wants something else random
