@@ -13,6 +13,25 @@
 //
 const randomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
+//
+//  fetchDadJoke() as a random tweet generator
+//  uses API at icanhazdadjoke.com
+//
+const fetchDadJoke = function() {
+  const apiEndPoint = "https://icanhazdadjoke.com/";
+
+  $.ajax({
+    async: false,
+    url: apiEndPoint,
+    contentType: "application/json",
+    dataType: 'json',
+    success: function(data) {
+      alert(data.joke);
+      return (data.joke);
+    },
+  });
+  return "((Sorry, no joke available right now!))";
+};
 
 
 //
@@ -20,6 +39,7 @@ const randomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min
 // swap class to 'toomanychars' (which changes to red) & reverse if ok
 //
 $(document).ready(function() {
+  // process character counter counts
   $("#tweet-text").on("input", function() {                       // update character counter in tweet form
     const maxChar = 140;
     const inputChar = $(this).val().length;
@@ -39,6 +59,12 @@ $(document).ready(function() {
     }
   });
 
+  // user wants a dad joke
+  $("#dadjoke").click(function() {
+    $('#tweet-text').val(fetchDadJoke());
+  });
+
+  // user wants something else random
   $("#randomizer").click(function() {                             // random tweet posts if user desires
     let randomQuotes = [
       "The quick brown fox jumps over the lazy dog.",
@@ -64,3 +90,6 @@ $(document).ready(function() {
     $('#tweet-text').val(randomQuotes[rando]);
   });
 });
+
+
+

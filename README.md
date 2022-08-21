@@ -23,6 +23,7 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 ## Extra Features...
 - Can't think of what to "caw" about? Just hit the randomizer icon!
 - Badge counter shows # of tweets below current position.
+- Added "hand" pointer over top right nav items (CSS)
 --- 
 ## Future Plans...
 - modify badge to only show 'unread' tweets 

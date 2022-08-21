@@ -39,7 +39,10 @@
     <!-- START: TOP NAV BAR -->
     <nav class="nav">
       <span class="logo"><IMG SRC="./images/logo.png" width="120" height="120">tweetEr</span>
-      <Span class="writenew" style="font-family: 'Source Sans Pro', sans-serif;">Write a new tweet<br><i class="fa-solid fa-angles-down"></i></Span>
+      <div id="writenewlink" class="writenew">
+        <span class="writenew tooltip writenewlink" id = "opentweet2" style="font-family: 'Source Sans Pro', sans-serif; font-weight:bold; padding-bottom: 5px;">Write a new tweet<span class="tooltiptext">click to compose a new tweet</span></span>
+        <i class="fa-solid fa-angles-down fa-lg writenewlink" id="opentweet" style="color:orange; padding-top: 10px;"></i>
+      </div>
     </nav>
     <!-- END: TOP NAV BAR -->
 
@@ -60,7 +63,7 @@
     <main class="container">
 
       <!-- start: create a tweet form -->
-      <section class="new-tweet">
+      <section class="new-tweet" id="newtweetform">
         <form action="/tweets" method="POST" class="new-tweet-form" id ="new-tweet-form">
           <!-- START NEW TWEET BODY -->
           <label for="newtweet-text" class="newtweet-label">What are you cawing about?</label>
@@ -73,7 +76,7 @@
           <div class="newtweet-footer">
             <div><button type="submit" id="submit">TWEET</button>
             </div>
-            <div><i class="fa-solid fa-shuffle icon tooltip" id="randomizer"><span class="tooltiptext">click for random message!</span></i>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+            <div><i class="fa-solid fa-face-grin-wide" id="dadjoke"></i>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-shuffle icon tooltip" id="randomizer"><span class="tooltiptext">click for random message!</span></i>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
             <output name="counter" class="counter tooltip" for="tweet-text">140<span class="tooltiptext">characters remaining</span></output>
             </div>
           </div>
@@ -102,8 +105,8 @@
       </div>
     </footer>
 
-    <a href="javascript: document.body.scrollIntoView(false);" class="float">
-      <i class="fa-solid fa-circle-arrow-down my-float"></i><small class="badge" id="badge">0</small>
+    <a href="javascript: document.body.scrollIntoView(true); toggleTweetForm(true);" class="float" id="floater">
+      <i class="fa-solid fa-arrow-up my-float"></i><small class="badge" id="badge">0</small>
     </a>
     
   </body>

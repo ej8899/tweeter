@@ -7,7 +7,7 @@
 //
 // global variables
 //
-let numTotalUnreadTweets = 0;
+let numTotalUnreadTweets = 0, inputFormState = 0;
 
 
 //
@@ -28,7 +28,7 @@ const renderTweets = (tweets) => {
   numTotalUnreadTweets = 0;
   for (let x = 0; x < tweets.length; x ++) {
     const tweet = createTweetElement(tweets[x]);
-    $('#tweets-container').prepend(tweet);          // TODO lets see how data is saved - this may need to be append like stated
+    $('#tweets-container').prepend(tweet);
     numTotalUnreadTweets ++;
   }
 };
@@ -68,13 +68,41 @@ const loadTweets = () => {
   });
 };
 
-
+//
+// toggleTweetForm() - open or close the form
+// - if passing "true", we'll override where the form sits now and just open it.
+//
+const toggleTweetForm = (forceOpen) => {
+  if (forceOpen === true) {
+    inputFormState = 0;                             // 0 closed, 1 open
+  }
+  if (inputFormState === 0) {
+    $("#newtweetform").slideDown(300);              // open input form
+    $("#tweet-text").focus();                       // give form input FOCUS
+    inputFormState = 1;
+  } else {
+    inputFormState = 0;
+    $("#newtweetform").slideUp(300);                // close input form
+  }
+};
 
 //
 // document.ready HANDLER
 //
 $(document).ready(function() {
+  $("#floater").hide();                               // default to hide our 'floater' icon on page load
   
+  $("#newtweetform").hide();                          // default to input form closed
+  inputFormState = 0;                                 // 0 closed, 1 open
+  
+  $("#opentweet").click(function() {                  // allow for click on chevron icon,
+    toggleTweetForm();
+  });
+  $("#opentweet2").click(function() {                 // and the 'write a new tweet' text
+    toggleTweetForm();
+  });
+
+
   // keep any error block closed
   $("#error-block").hide();
 
@@ -130,6 +158,15 @@ $(document).ready(function() {
 
     // update badge for unread tweets
     $('#badge').html(Math.floor(remainingTweets));
+
+    if (scrollPos > 200) {
+      // show 'to top' float button
+      $("#floater").show();
+      $("#writenewlink").hide();
+    } else {
+      $("#floater").hide();
+      $("#writenewlink").show();
+    }
   });
 
 }); // end of document.ready
