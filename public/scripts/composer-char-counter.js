@@ -30,6 +30,8 @@ $(document).ready(function() {
     $inputCounter.text(charCounter);
     if (charCounter < 0) {
       $inputCounter.addClass("toomanychars");
+      $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message is too long!");
+      $("#error-block").slideDown(300);
     } else {
       $inputCounter.removeClass("toomanychars");
       $("#error-block").slideUp(100);
