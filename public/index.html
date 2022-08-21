@@ -58,14 +58,18 @@
   
     <!-- start: MAIN section-->
     <main class="container">
+
       <!-- start: create a tweet form -->
       <section class="new-tweet">
         <form action="/tweets" method="POST" class="new-tweet-form" id ="new-tweet-form">
           <!-- START NEW TWEET BODY -->
           <label for="newtweet-text" class="newtweet-label">What are you cawing about?</label>
           <textarea name="text" id="tweet-text" class="newtweet-textarea"></textarea>
+          <span id="error-block" class="error-message-box">
+            Ooops!  error goes here
+          </span>
           <!-- END NEW TWEET BODY -->
-          <!-- START NEW TWEET FOOTER -->
+          <!-- START CREATE NEW TWEET FOOTER -->
           <div class="newtweet-footer">
             <div><button type="submit" id="submit">TWEET</button>
             </div>
@@ -73,7 +77,7 @@
             <output name="counter" class="counter tooltip" for="tweet-text">140<span class="tooltiptext">characters remaining</span></output>
             </div>
           </div>
-          <!-- END NEW TWEET FOOTER -->
+          <!-- END CREATE NEW TWEET FOOTER -->
         </form>
       </section>
       <!-- end: create a tweet form -->

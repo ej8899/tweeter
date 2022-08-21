@@ -8,6 +8,14 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 
 --- 
 ## Contents...  
+1. Features
+2. Extra Features
+3. Future Plans
+4. Quick Start
+5. Detailed Operation
+6. Known Bugs
+7. Attributions
+8. Updates
 --- 
 ## Features...  
 - Mobile & desktop friendly (scales to size).
@@ -25,6 +33,7 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 --- 
 ## Known Bugs...
 - Badge counter isn't showing 'precise' # of tweets below.
+- Scroll down icon goes to top of screen, not bottom.
 ---
 ## Attributions...
 - [TimeAgo](https://timeago.yarp.com/)
@@ -38,10 +47,3 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 ## Updates...
 - Get the latest of our rendition of Tweeter on [Github here](https://github.com/ej8899/tweeter)!
 ---
-## Getting Started
-
-1. [Create](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) a new repository using this repository as a template.
-2. Clone your repository onto your local device.
-3. Install dependencies using the `npm install` command.
-3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
-4. Go to <http://localhost:8080/> in your browser.

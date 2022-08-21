@@ -32,6 +32,8 @@ $(document).ready(function() {
       $inputCounter.addClass("toomanychars");
     } else {
       $inputCounter.removeClass("toomanychars");
+      $("#error-block").slideUp(100);
+      $("#tweet-text").css("outline","none");
     }
   });
 
@@ -45,6 +47,15 @@ $(document).ready(function() {
       "What do you call a magic dog? A labracadabrador.",
       "Lorem Ipsum has roots in a piece of classical Latin literature from 45 BC?",
       "Aliens exist.  Change my mind.",
+      "The quick brown fox does what?",
+      "I went to buy some camo pants but couldn't find any.",
+      "I used to have a handle on life, but then it broke.",
+      "I used to think I was indecisive. But now I'm not so sure.",
+      "A termite walks into the bar and asks, 'Is the bar tender here?'",
+      " I don't suffer from insanity—I enjoy every minute of it.",
+      "People who take care of chickens are literally chicken tenders.",
+      "Despite the high cost of living, it remains popular.",
+      "A blind man walked into a bar… and a table… and a chair…"
     ];
     let rando = randomNumber(0,randomQuotes.length);
     

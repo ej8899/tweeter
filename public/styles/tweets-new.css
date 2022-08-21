@@ -35,6 +35,10 @@
   font-family: 'Source Sans Pro', sans-serif;
   resize: none;
 }
+.newtweet-textarea:focus {
+  outline: none;
+  outline-color:red;
+}
 
 .newtweet-label {
   display:flex;
@@ -64,4 +68,13 @@
 
 .toomanychars {
   color: red
+}
+
+.error-message-box {
+  background-color: rgba(255, 0, 0, 0.328);
+  color:#353432;
+  border: none;
+  padding: 10px;
+  text-align: left;
+  border-radius: 5px;
 }

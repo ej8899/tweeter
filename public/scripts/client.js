@@ -9,6 +9,18 @@
 //
 let numTotalUnreadTweets = 0;
 
+
+//
+//  escape() - escape and bad text for cross-site-scripting
+//  https://flex-web.compass.lighthouselabs.ca/workbooks/flex-m04w9/activities/629?journey_step=49&workbook=19
+//
+const escapeText = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
+
 //
 // renderTweets
 //
@@ -28,12 +40,13 @@ const renderTweets = (tweets) => {
 const createTweetElement = (tweetData) => {
   // timeago.format(1473245023718);                 // using timeago library - see index.html for SCRIPT link
   let timeStamp = timeago.format(tweetData.created_at);
+  let escapeTextElement = escapeText(tweetData.content.text);
   let tweetContainer = `        <article class="tweets-layout">
                                 <div class="tweets-header">
                                   <div><IMG SRC="${tweetData.user.avatars}"> ${tweetData.user.name}</div>
                                   <div>${tweetData.user.handle}</div>
                                 </div>
-                                <div class="tweets-message">${tweetData.content.text}</div>
+                                <div class="tweets-message">${escapeTextElement}</div>
                                 <footer class="tweets-footer">
                                   <div>${timeStamp}</div> 
                                   <div>
@@ -56,11 +69,15 @@ const loadTweets = () => {
 };
 
 
+
 //
 // document.ready HANDLER
 //
 $(document).ready(function() {
   
+  // keep any error block closed
+  $("#error-block").hide();
+
   //
   // process form submission
   //
@@ -69,14 +86,21 @@ $(document).ready(function() {
     event.preventDefault();
 
     // error check submission
+    $("#error-block").slideUp(100);
     let tweetMessage = $(this).find('#tweet-text').val().trim();
     $(this).find("#tweet-text").val(tweetMessage);
     const tweetLength = tweetMessage.length;
     
-    if ((maxTweetChars - tweetLength) < 0) {
-      alert("too long");
-    } else if (tweetLength === 0) {
-      alert("no message");
+    if ((maxTweetChars - tweetLength) < 0) {              // error check for tweet TOO LONG
+      $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message too long!");
+      $("#error-block").slideDown(300);
+      $("#tweet-text").css("outline","2px solid red");
+    } else if (tweetLength === 0) {                       // error check for tweet EMPTY
+      $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message is missing!");
+      $("#error-block").slideDown(300);
+      
+      $("#tweet-text").css("outline","2px solid red");
+      
     } else {                                              // error checks all good, allow post to submit
       const newTweet = $(this).serialize();
       $.post("/tweets/", newTweet, () => {                // https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
