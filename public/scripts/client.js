@@ -92,7 +92,7 @@ $(document).ready(function() {
     const tweetLength = tweetMessage.length;
     
     if ((maxTweetChars - tweetLength) < 0) {              // error check for tweet TOO LONG
-      $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message too long!");
+      $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message is too long!");
       $("#error-block").slideDown(300);
       $("#tweet-text").css("outline","2px solid red");
     } else if (tweetLength === 0) {                       // error check for tweet EMPTY
