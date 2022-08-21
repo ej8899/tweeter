@@ -20,17 +20,19 @@ const randomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min
 const fetchDadJoke = function() {
   const apiEndPoint = "https://icanhazdadjoke.com/";
 
-  $.ajax({
+  let jqXHR = $.ajax({
     async: false,
     url: apiEndPoint,
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader("User-Agent","https://github.com/ej8899/tweeter");
+    },
     contentType: "application/json",
     dataType: 'json',
-    success: function(data) {
-      alert(data.joke);
-      return (data.joke);
-    },
+    //success: function(data) { alert(data.joke); return (data.joke); }, // - NOTE use ddifferent w. async false - see jqXHR
   });
-  return "((Sorry, no joke available right now!))";
+  //return "((Sorry, no joke available right now!))";
+  let response = JSON.parse(jqXHR.responseText);            // https://www.sitepoint.com/jqxhr-object/
+  return (response.joke);
 };
 
 
@@ -61,7 +63,7 @@ $(document).ready(function() {
 
   // user wants a dad joke
   $("#dadjoke").click(function() {
-    $('#tweet-text').val(fetchDadJoke());
+    $('#tweet-text').val(fetchDadJoke());   // TODO - check for char limit and fetch another if problematic
   });
 
   // user wants something else random

@@ -74,15 +74,15 @@ const loadTweets = () => {
 //
 const toggleTweetForm = (forceOpen) => {
   if (forceOpen === true) {
-    inputFormState = 0;                             // 0 closed, 1 open
+    inputFormState = 0;                               // 0 closed, 1 open
   }
   if (inputFormState === 0) {
-    $("#newtweetform").slideDown(300);              // open input form
-    $("#tweet-text").focus();                       // give form input FOCUS
+    $("#newtweetform").slideDown(300);                // open input form
+    $("#tweet-text").focus();                         // give form input FOCUS
     inputFormState = 1;
   } else {
     inputFormState = 0;
-    $("#newtweetform").slideUp(300);                // close input form
+    $("#newtweetform").slideUp(300);                  // close input form
   }
 };
 
