@@ -73,16 +73,17 @@ const loadTweets = () => {
 // - if passing "true", we'll override where the form sits now and just open it.
 //
 const toggleTweetForm = (forceOpen) => {
+  const slideSpeed = 300;
   if (forceOpen === true) {
-    inputFormState = 0;                               // 0 closed, 1 open
+    inputFormState = 0;                                // 0 closed, 1 open // ! QUESTION - can jquery read the state?
   }
   if (inputFormState === 0) {
-    $("#newtweetform").slideDown(300);                // open input form
-    $("#tweet-text").focus();                         // give form input FOCUS
+    $("#newtweetform").slideDown(slideSpeed);          // open input form
+    $("#tweet-text").focus();                          // give form input FOCUS
     inputFormState = 1;
   } else {
     inputFormState = 0;
-    $("#newtweetform").slideUp(300);                  // close input form
+    $("#newtweetform").slideUp(slideSpeed);            // close input form
   }
 };
 
@@ -110,22 +111,22 @@ $(document).ready(function() {
   // process form submission
   //
   $("#new-tweet-form").submit(function(event) {
-    const maxTweetChars = 140;
+    //const maxTweetChars = 140;
     event.preventDefault();
 
     // error check submission
-    $("#error-block").slideUp(100);
+    $("#error-block").slideUp(errorSlideUpSpeed);
     let tweetMessage = $(this).find('#tweet-text').val().trim();
     $(this).find("#tweet-text").val(tweetMessage);
     const tweetLength = tweetMessage.length;
     
     if ((maxTweetChars - tweetLength) < 0) {              // error check for tweet TOO LONG
       $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message is too long!");
-      $("#error-block").slideDown(300);
+      $("#error-block").slideDown(errorSlideDownSpeed);
       $("#tweet-text").css("outline","2px solid red");
     } else if (tweetLength === 0) {                       // error check for tweet EMPTY
       $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message is missing!");
-      $("#error-block").slideDown(300);
+      $("#error-block").slideDown(errorSlideDownSpeed);
       
       $("#tweet-text").css("outline","2px solid red");
       

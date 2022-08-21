@@ -8,33 +8,43 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 
 --- 
 ## Contents...  
-1. Features
-2. Extra Features
-3. Future Plans
-4. Quick Start
-5. Detailed Operation
-6. Known Bugs
-7. Attributions
-8. Updates
+1. [Features](#features)
+2. [Extra Features](#extra-features)
+3. [Future Plans](#future-plans)
+4. [Quick Start](#quick-start)
+5. [Detailed Operation](#detailed-operation)
+6. [Known Bugs](#known-bugs)
+7. [Attributions](#attributes)
+8. [Updates](#updates)
 --- 
 ## Features...  
-- Mobile & desktop friendly (scales to size).
+- Mobile & desktop friendly (scales to size).  
+[( back to top 🔺)](#about)
 ---
 ## Extra Features...
 - Can't think of what to "caw" about? Just hit the randomizer icon!
 - Badge counter shows # of tweets below current position.
 - Added "hand" pointer over top right nav items (CSS)
+- Added 'random dad jokes' generator with API call to "icanhadadjoke.com"  
+[( back to top 🔺)](#about)
 --- 
 ## Future Plans...
-- modify badge to only show 'unread' tweets 
+- modify badge to only show 'unread' tweets
+- update error handler so it can be closed with our random tweet and dad joke calls  
+[( back to top 🔺)](#about)
 --- 
-## Quick Start...
+## Quick Start...  
+- dfdfdf  
+[( back to top 🔺)](#about)
 --- 
-## Detailed Operation...
+## Detailed Operation...  
+- fjldskfjd
+[( back to top 🔺)](#about)
 --- 
 ## Known Bugs...
 - Badge counter isn't showing 'precise' # of tweets below.
-- Scroll down icon goes to top of screen, not bottom.
+- Scroll down icon goes to top of screen, not bottom.  
+[( back to top 🔺)](#about)
 ---
 ## Attributions...
 - [TimeAgo](https://timeago.yarp.com/)
@@ -43,8 +53,10 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 - Google Fonts
 - Ajax
 - Node.js
-- JQuery
+- JQuery  
+[( back to top 🔺)](#about)
 ---  
 ## Updates...
-- Get the latest of our rendition of Tweeter on [Github here](https://github.com/ej8899/tweeter)!
+- Get the latest of our rendition of Tweeter on [Github here](https://github.com/ej8899/tweeter)!  
+[( back to top 🔺)](#about)
 ---
