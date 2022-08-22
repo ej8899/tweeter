@@ -34,6 +34,7 @@ const renderTweets = (tweets) => {
   }
 };
 
+
 //
 //  createTweetElement
 //  take tweet object and return HTML <article>
@@ -77,8 +78,8 @@ const loadTweets = () => {
 //
 const toggleTweetForm = (forceOpen) => {
   const slideSpeed = 300;
-  if (forceOpen === true) {
-    inputFormState = 0;                                // 0 closed, 1 open // ! QUESTION - can jquery read the state?
+  if (forceOpen === true) {                             // ! we can also: if ($("#newtweetform").is(":visible") == true) {}
+    inputFormState = 0;                                // 0 closed, 1 open
   }
   if (inputFormState === 0) {
     $("#newtweetform").slideDown(slideSpeed);          // open input form
@@ -88,7 +89,9 @@ const toggleTweetForm = (forceOpen) => {
     inputFormState = 0;
     $("#newtweetform").slideUp(slideSpeed);            // close input form
   }
-};
+};  
+// ! QUESTION: BEST PRACTICE - should we have these class names all assigned into (global) variables
+// ! for reference instead of 'hard coding' them?  
 
 
 //
@@ -99,12 +102,12 @@ $(document).on("click", ".fa-flag", function(event){
   event.stopPropagation();                              // ! QUESTION is stopPropagation to be used here?
   if ($aFlag.hasClass("redflag")) {
     $aFlag.removeClass("redflag");
-    $(this).parent().parent().parent().removeClass("redborder");
+    $(this).parent().parent().parent().removeClass("redborder");  // ! QUESTION: what is best/better practice? this line or next?
     $(this).closest('.tweets-layout').children('.tweets-message').removeClass("blurredtext");
   } else {
     $aFlag.addClass("redflag");
     // let $mainTweet = $(this).parents().hasClass('tweets-layout');      // NOTE: parents (PLURAL) traverses UP the structure
-    // alert($mainTweet); // shows TRUE since we have a match
+    // alert($mainTweet);                                                 // shows TRUE since we have a match
     
     $(this).parent().parent().parent().addClass("redborder");
     //$(this).parent().parent().parent().siblings(".tweets-message").addClass("blurredtext");
@@ -218,7 +221,6 @@ $(document).ready(function() {
   // monitor scrolling so we can update for unread tweets
   //
   $(window).scroll(function() {
-    
     let docHeight = $(document).height();
     let scrollPos = $(window).scrollTop();
     let windowHeight = $(window).height();

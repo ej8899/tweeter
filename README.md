@@ -28,13 +28,18 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 ## Extra Features...
 - Can't think of what to "caw" about? Just hit the randomizer icon!
 - Badge counter shows # of tweets below current position.
-- Added "hand" pointer over top right nav items (CSS)
-- Added 'random dad jokes' generator with API call to "icanhazdadjoke.com"  
+- Added "tool tips" at various locations.
+- Added "hand" pointer over top right nav items (CSS).
+- Added 'random dad jokes' generator with API call to "icanhazdadjoke.com".
+- Added function to 'report' flag - flags goes red & blurs 'offensive' tweet.
+- Added function to 'heart' icon - toggles state red or normal.
+- Added function to 'retweet' icon - turns icon red & copies message to tweet input form.  
 [( back to top 🔺)](#tweeter)
 --- 
 ## Future Plans...
 - modify badge to only show 'unread' tweets
 - update error handler so it can be closed with our random tweet and dad joke calls  
+- update 'dad joke' API fetch to be asychnronous  
 [( back to top 🔺)](#tweeter)
 --- 
 ## Quick Start...  
