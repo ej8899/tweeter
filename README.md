@@ -18,14 +18,16 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 8. [Updates](#updates)
 --- 
 ## Features...  
-- Mobile & desktop friendly (scales to size).  
+- Mobile & desktop friendly.
+  - mobile view under 1024 pixels wide
+  - footer adjustment under 550 pixels wide    
 [( back to top 🔺)](#about)
 ---
 ## Extra Features...
 - Can't think of what to "caw" about? Just hit the randomizer icon!
 - Badge counter shows # of tweets below current position.
 - Added "hand" pointer over top right nav items (CSS)
-- Added 'random dad jokes' generator with API call to "icanhadadjoke.com"  
+- Added 'random dad jokes' generator with API call to "icanhazdadjoke.com"  
 [( back to top 🔺)](#about)
 --- 
 ## Future Plans...

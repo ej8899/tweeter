@@ -45,22 +45,22 @@
       </div>
     </nav>
     <!-- END: TOP NAV BAR -->
-
   
-    <!-- start: top header w image and name -->
-    <header>
-      <div><br clear="all">
-          <img src="/images/profile-dog.png">
-      </div>
-      <div>
-          <h2>Ernie Johnson</h2>
-      </div>
-    </header>
-    <!-- end: top header -->
+    <!-- start wrapper for header & main -->
+    <div class="wrapper">
+      <!-- start: top header w image and name -->
+      <header>
+        <div><br clear="all">
+            <img src="/images/profile-dog.png">
+        </div>
+        <div>
+            <h2>Ernie Johnson</h2>
+        </div>
+      </header>
+      <!-- end: top header -->
 
-  
     <!-- start: MAIN section-->
-    <main class="container">
+    <main class="container"
 
       <!-- start: create a tweet form -->
       <section class="new-tweet" id="newtweetform">
@@ -85,25 +85,27 @@
       </section>
       <!-- end: create a tweet form -->
       
-      <BR><BR> <!-- TODO - remove these -->
+      
 
       <!-- START: section for showing tweets -->
       <section id="tweets-container">  
       </section>
-      <br clear="all">    
       <!-- END: section for showing tweets -->
+
+      <footer class="page-footer">
+        <div class="page-footer-blocks"><small>
+          <i class="fa-solid fa-copyright"></i> 2022. All rights reserved.
+        </small></div>
+        <div class="page-footer-blocks">        
+            <a href="https://github.com/ej8899/tweeter"><i class="fa-brands fa-square-github icon tooltip"><span class="tooltiptext">click for our github profile</span></i></a>&nbsp;<i class="fa-brands fa-square-twitter icon"></i>&nbsp;<i class="fa-brands fa-linkedin icon"></i>&nbsp;<i class="fa-solid fa-envelope icon"></i>
+        </div>
+      </footer>
 
     </main>
     <!-- END: MAIN SECTION -->
+    </div> <!-- END: wrapper for main and head -->
 
-    <footer class="page-footer">
-      <div class="page-footer-blocks"><small>
-        <i class="fa-solid fa-copyright"></i> 2022. All rights reserved.
-      </small></div>
-      <div class="page-footer-blocks">        
-          <a href="https://github.com/ej8899/tweeter"><i class="fa-brands fa-square-github icon tooltip"><span class="tooltiptext">click for our github profile</span></i></a>&nbsp;<i class="fa-brands fa-square-twitter icon"></i>&nbsp;<i class="fa-brands fa-linkedin icon"></i>&nbsp;<i class="fa-solid fa-envelope icon"></i>
-      </div>
-    </footer>
+  
 
     <a href="javascript: document.body.scrollIntoView(true); toggleTweetForm(true);" class="float" id="floater">
       <i class="fa-solid fa-arrow-up my-float"></i><small class="badge" id="badge">0</small>
