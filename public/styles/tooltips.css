@@ -15,9 +15,9 @@
 
 .tooltip .tooltiptext {
   font-family: Arial, Helvetica, sans-serif;
-  font-size:small;
+  font-size:medium;
   visibility: hidden;
-  width: 120px;
+  width: 160px;
   background-color: black;
   color: #fff;
   text-align: center;
