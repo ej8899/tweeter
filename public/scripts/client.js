@@ -4,6 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+
 //
 // global variables
 //
@@ -58,6 +59,7 @@ const createTweetElement = (tweetData) => {
   return tweetContainer;
 };
 
+
 //
 //  get tweets from 'server' & render to page
 //
@@ -67,6 +69,7 @@ const loadTweets = () => {
     $('#badge').html(Math.floor(numTotalUnreadTweets));   // update tweet count badge
   });
 };
+
 
 //
 // toggleTweetForm() - open or close the form
@@ -91,20 +94,21 @@ const toggleTweetForm = (forceOpen) => {
 //
 // process FLAGS on each tweet 
 //
-$(document).on("click", ".fa-flag", function(){
+$(document).on("click", ".fa-flag", function(event){
   const $aFlag = $(this).parent().find(".fa-flag");
+  event.stopPropagation();                              // ! QUESTION is stopPropagation to be used here?
   if ($aFlag.hasClass("redflag")) {
     $aFlag.removeClass("redflag");
     $(this).parent().parent().parent().removeClass("redborder");
+    $(this).closest('.tweets-layout').children('.tweets-message').removeClass("blurredtext");
   } else {
     $aFlag.addClass("redflag");
-    let $mainTweet = $(this).parents().hasClass('tweets-layout');      // NOTE: parents (PLURAL) traverses UP the structure
+    // let $mainTweet = $(this).parents().hasClass('tweets-layout');      // NOTE: parents (PLURAL) traverses UP the structure
     // alert($mainTweet); // shows TRUE since we have a match
-    //$mainTweet.addClass("redborder");
-    $(this).parent().parent().parent().addClass("redborder");
     
-    // let's hide the offending tweet
-    //$($mainTweet).slideUp(errorSlideUpSpeed);
+    $(this).parent().parent().parent().addClass("redborder");
+    //$(this).parent().parent().parent().siblings(".tweets-message").addClass("blurredtext");
+    $(this).closest('.tweets-layout').children('.tweets-message').addClass("blurredtext");
   }
   // HOW TO continue this process:
   // let's add another class which is unique ID for this message so we can reference it
@@ -112,6 +116,7 @@ $(document).on("click", ".fa-flag", function(){
   // then strip like so: messageId = $(this).attr('class') // then extract the "IDxxx",strip ID and process on the ID #.
   // this ID would then get passed back to sever as reported for algorithm to deal with, or someone to review.
 });
+
 
 //
 // process HEARTS on each tweet 
@@ -125,17 +130,24 @@ $(document).on("click", ".fa-heart", function(){
   }
 });
 
+
 //
 // process RETWEET on each tweet 
 //
 $(document).on("click", ".fa-retweet", function(){
   const $aFlag = $(this).parent().find(".fa-retweet");
-  
+
   $aFlag.addClass("redflag");   // might already be set, but that's ok - not removing it as already 'retweeted'
-  toggleTweetForm(true);        // force tweet window open
   // get message out of tweets-message class container
-  
+  let reTweetMessage = $(this).closest('.tweets-layout').children('.tweets-message').text();
+  // slide open tweet form
+  toggleTweetForm(true);        // force tweet window open
+  // populate it
+  $('#tweet-text').val(reTweetMessage);
+  // scroll to top (form area)
+  document.body.scrollIntoView(true);
 });
+
 
 //
 // document.ready HANDLER
@@ -154,7 +166,7 @@ $(document).ready(function() {
   });
 
   // toggle 'flag' for review on tweets
-  $(".fa-flag").click(function() {                 // and the 'write a new tweet' text // TODO why doesn't work and flag2 does?
+  $(".fa-flag").click(function() {                 // and the 'write a new tweet' text // ! QUEsTION - why doesn't work and flag2 does?
     alert("flag1");
   });
 
@@ -195,11 +207,13 @@ $(document).ready(function() {
     }
   });
 
+
   //
   // render our page of all tweets in database
   //
   loadTweets();
   
+
   //
   // monitor scrolling so we can update for unread tweets
   //
@@ -224,5 +238,4 @@ $(document).ready(function() {
       $("#writenewlink").show();
     }
   });
-
 }); // end of document.ready

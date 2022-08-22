@@ -66,8 +66,9 @@ $(document).ready(function() {
     }
   });
 
-  
+  //
   // user wants a dad joke
+  //
   $("#dadjoke").click(function() {
     let theJoke = fetchDadJoke();
     if (theJoke.length > maxTweetChars) {                         // TODO: any errors we should check for?
@@ -76,7 +77,9 @@ $(document).ready(function() {
     $('#tweet-text').val(theJoke);
   });
 
+  //
   // user wants something else random
+  //
   $("#randomizer").click(function() {                             // random tweet posts if user desires
     let randomQuotes = [
       "The quick brown fox jumps over the lazy dog.",
@@ -101,7 +104,7 @@ $(document).ready(function() {
     
     $('#tweet-text').val(randomQuotes[rando]);
   });
-});
+}); // END DOCUMENT READY
 
 
 
