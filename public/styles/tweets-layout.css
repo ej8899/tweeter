@@ -57,3 +57,11 @@ CSS for tweets-container
   margin-top: 5px;
   padding-top: 5px;
 }
+
+.redflag {
+  color:red;
+}
+
+.redborder {
+  border: 2px solid red;
+}

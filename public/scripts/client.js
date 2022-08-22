@@ -87,6 +87,56 @@ const toggleTweetForm = (forceOpen) => {
   }
 };
 
+
+//
+// process FLAGS on each tweet 
+//
+$(document).on("click", ".fa-flag", function(){
+  const $aFlag = $(this).parent().find(".fa-flag");
+  if ($aFlag.hasClass("redflag")) {
+    $aFlag.removeClass("redflag");
+    $(this).parent().parent().parent().removeClass("redborder");
+  } else {
+    $aFlag.addClass("redflag");
+    let $mainTweet = $(this).parents().hasClass('tweets-layout');      // NOTE: parents (PLURAL) traverses UP the structure
+    // alert($mainTweet); // shows TRUE since we have a match
+    //$mainTweet.addClass("redborder");
+    $(this).parent().parent().parent().addClass("redborder");
+    
+    // let's hide the offending tweet
+    //$($mainTweet).slideUp(errorSlideUpSpeed);
+  }
+  // HOW TO continue this process:
+  // let's add another class which is unique ID for this message so we can reference it
+  // so we have class fa-flag IDxxx (xxx is the unique number)
+  // then strip like so: messageId = $(this).attr('class') // then extract the "IDxxx",strip ID and process on the ID #.
+  // this ID would then get passed back to sever as reported for algorithm to deal with, or someone to review.
+});
+
+//
+// process HEARTS on each tweet 
+//
+$(document).on("click", ".fa-heart", function(){
+  const $aFlag = $(this).parent().find(".fa-heart");
+  if ($aFlag.hasClass("redflag")) {
+    $aFlag.removeClass("redflag");
+  } else {
+    $aFlag.addClass("redflag");  // also removeClass
+  }
+});
+
+//
+// process RETWEET on each tweet 
+//
+$(document).on("click", ".fa-retweet", function(){
+  const $aFlag = $(this).parent().find(".fa-retweet");
+  
+  $aFlag.addClass("redflag");   // might already be set, but that's ok - not removing it as already 'retweeted'
+  toggleTweetForm(true);        // force tweet window open
+  // get message out of tweets-message class container
+  
+});
+
 //
 // document.ready HANDLER
 //
@@ -101,6 +151,11 @@ $(document).ready(function() {
   });
   $("#opentweet2").click(function() {                 // and the 'write a new tweet' text
     toggleTweetForm();
+  });
+
+  // toggle 'flag' for review on tweets
+  $(".fa-flag").click(function() {                 // and the 'write a new tweet' text // TODO why doesn't work and flag2 does?
+    alert("flag1");
   });
 
 

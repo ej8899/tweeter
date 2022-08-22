@@ -66,6 +66,7 @@ $(document).ready(function() {
     }
   });
 
+  
   // user wants a dad joke
   $("#dadjoke").click(function() {
     let theJoke = fetchDadJoke();
