@@ -99,6 +99,23 @@ main {
 .moreItems {
   padding: 10px;
   font-weight: bold;
+  width: 90%;
+  border-radius: 5px;
+  border: 2px solid teal;
+  padding: 5px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.moreItems:hover {
+  color: #FD5901;
+  cursor: pointer;
+}
+
+.moreText {
+  align-items:center;
+  max-width: 213px;
 }
 .badge2 {
   position:relative;
@@ -110,9 +127,9 @@ main {
   content:attr(data-badge);
   position:absolute;
   top:-5px;
-  right:-10px;
+  right: -25px;
   font-size:.8em;
-  background:#FD5901;
+  background:#fd5901a9;
   color:white;
   width:32px;height:24px;
   text-align:center;
@@ -120,8 +137,4 @@ main {
   line-height:18px;
   border-radius:20%;
   box-shadow:0 0 1px #333;
-}
-.moreItems:hover {
-  color: #FD5901;
-  cursor: pointer;
 }

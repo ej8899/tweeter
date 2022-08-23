@@ -181,8 +181,8 @@ $(document).ready(function() {
     // see how many tweetsOnDisplay
     // numTotalUnreadTweets
     // remember we have to count backwards
-    if (tweetsOnDisplay < 1) {
-      $("#more").addClass("hide");
+    if (totalTweetsRemaining < 1) {
+      $(".moreItems").addClass("hide");
       return;
     }
     for(let x = 1; x < tweetsPerLoad + 1; x ++) {
@@ -198,8 +198,8 @@ $(document).ready(function() {
     // UPDATE HTML to show # of tweets remaining: can we put badge on the "more"? 
     // $('#error-block').html -- numTotalUnreadTweets - tweetsOnDisplay
 
-      if (tweetsOnDisplay < 0) {
-        $("#more").addClass("hide");
+      if (totalTweetsRemaining < 1) {
+        $(".moreItems").addClass("hide");
         tweetsOnDisplay = 0;
       }
   });
