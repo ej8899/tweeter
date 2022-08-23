@@ -107,6 +107,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 128, 128, 0.199);
 }
 .moreItems:hover {
   color: #FD5901;

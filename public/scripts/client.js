@@ -270,4 +270,5 @@ $(document).ready(function() {
       $("#writenewlink").show();
     }
   });
-}); // end of document.ready
+
+}); // end of document.ready()

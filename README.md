@@ -34,6 +34,7 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 - Added function to 'report' flag - flags goes red & blurs 'offensive' tweet.
 - Added function to 'heart' icon - toggles state red or normal.
 - Added function to 'retweet' icon - turns icon red & copies message to tweet input form.  
+- Added pagination to showing tweets - displays 10 at a time then link (with counter) to show next group (10 at a time).
 [( back to top 🔺)](#tweeter)
 --- 
 ## Future Plans...
