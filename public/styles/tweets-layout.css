@@ -7,8 +7,8 @@ CSS for tweets-container
 
 #tweets-container {
   display:flex;
+  justify-content: space-between;
   width: 90%;
-  
   font-family: sans-serif;
   flex-direction: column;
   align-items: center;
@@ -26,6 +26,7 @@ CSS for tweets-container
 .tweets-layout {
   display:flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   background-color:#e7cda2;
   font-family: sans-serif;
@@ -34,6 +35,7 @@ CSS for tweets-container
   border-radius: 5px;
   border: 2px solid teal;
   padding: 20px;
+  margin-bottom: 20px;
 }
 .tweets-layout:hover {
   box-shadow: 0px 0px 20px rgba(0, 128, 128, 0.806);
@@ -69,4 +71,8 @@ CSS for tweets-container
 .blurredtext {
   color: transparent;
   text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.hide {
+  display: none;
 }

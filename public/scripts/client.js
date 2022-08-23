@@ -8,7 +8,7 @@
 //
 // global variables
 //
-let numTotalUnreadTweets = 0, inputFormState = 0;
+let numTotalUnreadTweets = 0, inputFormState = 0, tweetsOnDisplay = 0, tweetsPerLoad = 10, totalTweetsRemaining = 0;
 
 
 //
@@ -26,12 +26,16 @@ const escapeText = function (str) {
 // renderTweets
 //
 const renderTweets = (tweets) => {
-  numTotalUnreadTweets = 0;
+  let extraClass = "";
+  numTotalUnreadTweets = tweets.length;
+  tweetsOnDisplay = numTotalUnreadTweets - tweetsPerLoad;
   for (let x = 0; x < tweets.length; x ++) {
-    const tweet = createTweetElement(tweets[x]);
+    if (x < (tweets.length - tweetsPerLoad)) { extraClass = "hide"; } else { extraClass = ""; }
+    const tweet = createTweetElement(tweets[x],extraClass,x);
     $('#tweets-container').prepend(tweet);
-    numTotalUnreadTweets ++;
   }
+  totalTweetsRemaining = tweets.length - tweetsPerLoad;
+  $("#more").attr("data-badge",(totalTweetsRemaining));
 };
 
 
@@ -39,11 +43,11 @@ const renderTweets = (tweets) => {
 //  createTweetElement
 //  take tweet object and return HTML <article>
 //
-const createTweetElement = (tweetData) => {
+const createTweetElement = (tweetData,extraClass,id) => {
   // timeago.format(1473245023718);                 // using timeago library - see index.html for SCRIPT link
   let timeStamp = timeago.format(tweetData.created_at);
   let escapeTextElement = escapeText(tweetData.content.text);
-  let tweetContainer = `        <article class="tweets-layout">
+  let tweetContainer = `        <article class="tweets-layout ${extraClass}" id="id-${id}">
                                 <div class="tweets-header">
                                   <div><IMG SRC="${tweetData.user.avatars}"> ${tweetData.user.name}</div>
                                   <div>${tweetData.user.handle}</div>
@@ -55,8 +59,7 @@ const createTweetElement = (tweetData) => {
                                     <i class="fa-solid fa-flag icon tooltip"><span class="tooltiptext">file a complaint</span></i>&nbsp;<i class="fa-solid fa-retweet icon tooltip"><span class="tooltiptext">re-tweeter this</span></i>&nbsp;<i class="fa-solid fa-heart icon tooltip"><span class="tooltiptext">like this</span></i>
                                   </div>
                                 </footer>
-                                </article>
-                                <br clear="all">`;
+                                </article>`;
   return tweetContainer;
 };
 
@@ -173,6 +176,33 @@ $(document).ready(function() {
     alert("flag1");
   });
 
+  // process "more" tweets to load
+  $("#more").click(function() {
+    // see how many tweetsOnDisplay
+    // numTotalUnreadTweets
+    // remember we have to count backwards
+    if (tweetsOnDisplay < 1) {
+      $("#more").addClass("hide");
+      return;
+    }
+    for(let x = 1; x < tweetsPerLoad + 1; x ++) {
+      // grab ID of numTotalUnreadTweets - tweetsOnDisplay
+      // example, 40 total tweets, then tweetsOnDisplay = 30 (first run)
+      // so on first click we want tweetsondisplay (id) to unhide with id - x;
+      let divId = '#id-' + (tweetsOnDisplay - x);
+      $(divId).removeClass("hide");
+    }
+    totalTweetsRemaining -= tweetsPerLoad;
+    tweetsOnDisplay = tweetsOnDisplay - tweetsPerLoad;  // TODO - clean this - am I using it with 'totalTweetsRemaining'?
+    $("#more").attr("data-badge",totalTweetsRemaining);
+    // UPDATE HTML to show # of tweets remaining: can we put badge on the "more"? 
+    // $('#error-block').html -- numTotalUnreadTweets - tweetsOnDisplay
+
+      if (tweetsOnDisplay < 0) {
+        $("#more").addClass("hide");
+        tweetsOnDisplay = 0;
+      }
+  });
 
   // keep any error block closed
   $("#error-block").hide();
