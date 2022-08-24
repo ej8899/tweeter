@@ -134,6 +134,18 @@ $(document).on("click", ".fa-heart", function(){
   } else {
     $aFlag.addClass("redflag");  // also removeClass
   }
+  
+  // loop thru all posts, count # of checked HEARTS
+  // update counter in circle-check-heart
+  let likeCounter = 0;
+  const likedTweets = $('.fa-heart');
+  for (var i = 0; i < likedTweets.length; i++) {
+    if ($(likedTweets[i]).hasClass("redflag")) {
+      likeCounter ++;
+    }
+  }
+  // update counter here
+  $('#heartcounter').html("(" + likeCounter + ")");
 });
 
 
@@ -156,7 +168,7 @@ $(document).on("click", ".fa-retweet", function(){
 
 
 //
-// document.ready HANDLER
+// START: document.ready HANDLER
 //
 $(document).ready(function() {
   $("#floater").hide();                               // default to hide our 'floater' icon on page load
@@ -171,9 +183,30 @@ $(document).ready(function() {
     toggleTweetForm();
   });
 
-  // toggle 'flag' for review on tweets
-  $(".fa-flag").click(function() {                 // and the 'write a new tweet' text // ! QUEsTION - why doesn't work and flag2 does?
-    alert("flag1");
+
+  // get clicks on header heart-circle-check - filter only LIKED tweets
+  $(".fa-heart-circle-check").click(function() {
+    const likedTweets = $('.fa-heart');
+
+    // if heart-circle-check is RED, & we click again, then we want to return to a default view of paginated tweets
+    if ($(this).hasClass("redView")) {
+      $(this).removeClass("redView");
+      for (var i = 0; i < likedTweets.length; i++) {
+          $(likedTweets[i]).parent().parent().parent().removeClass("hide");
+      }
+    } else {
+      $(this).addClass("redView");
+      $(".moreItems").addClass("hide");  // get rid of "more" pagination link
+      // TODO - make this all a separate function that is called from document.read in this function - but separate so that
+      // TODO - heart click can also call it to remove a tweet from view if unchecking heart while in the liked tweets only view
+      for (var i = 0; i < likedTweets.length; i++) {
+        if ($(likedTweets[i]).hasClass("redflag")) { // if hidden & has 'heart' set, show tweet
+          $(likedTweets[i]).parent().parent().parent().removeClass("hide");
+        } else {
+          $(likedTweets[i]).parent().parent().parent().addClass("hide");  // hide the tweet as it's not liked.
+        }
+      }
+    }
   });
 
   // process "more" tweets to load
@@ -246,6 +279,12 @@ $(document).ready(function() {
   //
   loadTweets();
   
+  /*
+   // toggle 'flag' for review on tweets
+   $(".fa-flag").click(function() {                 // and the 'write a new tweet' text // ! QUEsTION - why doesn't work and flag2 does?
+    alert("flag1");
+  });
+  */
 
   //
   // monitor scrolling so we can update for unread tweets
@@ -271,4 +310,4 @@ $(document).ready(function() {
     }
   });
 
-}); // end of document.ready()
+}); // END:  of document.ready()

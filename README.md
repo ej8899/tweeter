@@ -18,6 +18,7 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 8. [Updates](#updates)
 --- 
 ## Features...  
+![](tweeter.gif)
 - Mobile & desktop friendly.
   - mobile view under 1024 pixels wide
   - footer adjustment under 550 pixels wide   
@@ -35,6 +36,8 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 - Added function to 'heart' icon - toggles state red or normal.
 - Added function to 'retweet' icon - turns icon red & copies message to tweet input form.  
 - Added pagination to showing tweets - displays 10 at a time then link (with counter) to show next group (10 at a time).
+- Added count of liked tweets.
+- Added view only "liked (heart)" tweets (click again for normal view)
 [( back to top 🔺)](#tweeter)
 --- 
 ## Future Plans...
@@ -52,7 +55,8 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 [( back to top 🔺)](#tweeter)
 --- 
 ## Known Bugs...
-- Badge counter isn't showing 'precise' # of tweets below.  
+- Return from liked tweets only" results in all tweets shown - pagination system breaks after this switch.
+- V. scroll bar is forced 'always' on' to prevent page shift if only a few tweets on page.
 [( back to top 🔺)](#tweeter)
 ---
 ## Attributions...
