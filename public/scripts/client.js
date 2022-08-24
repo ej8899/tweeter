@@ -1,15 +1,10 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
 //
 //  TWEETER - client.js
 //  - main client side JS file - use with composer-char-counter.js and index.html
 //  - LHL project "Tweeter" - 
 //  - https://flex-web.compass.lighthouselabs.ca/workbooks/flex-m04w8/activities/587?journey_step=39&workbook=11
-//  2022-08-23 -- http://www.github.com/ej8899/tweeter 
+//  2022-08-23 -- http://www.github.com/ej8899/tweeter
+//
 
 //
 // global variables
@@ -53,7 +48,7 @@ const createTweetElement = (tweetData,extraClass,id) => {
   // timeago.format(1473245023718);                 // using timeago library - see index.html for SCRIPT link
   let timeStamp = timeago.format(tweetData.created_at);
   let escapeTextElement = escapeText(tweetData.content.text);
-  let tweetContainer = `        <article class="tweets-layout ${extraClass}" id="id-${id}">
+  let tweetContainer = `      <article class="tweets-layout ${extraClass}" id="id-${id}">
                                 <div class="tweets-header">
                                   <div><IMG SRC="${tweetData.user.avatars}"> ${tweetData.user.name}</div>
                                   <div>${tweetData.user.handle}</div>
@@ -65,13 +60,13 @@ const createTweetElement = (tweetData,extraClass,id) => {
                                     <i class="fa-solid fa-flag icon tooltip"><span class="tooltiptext">file a complaint</span></i>&nbsp;<i class="fa-solid fa-retweet icon tooltip"><span class="tooltiptext">re-tweeter this</span></i>&nbsp;<i class="fa-solid fa-heart icon tooltip"><span class="tooltiptext">like this</span></i>
                                   </div>
                                 </footer>
-                                </article>`;
+                            </article>`;
   return tweetContainer;
 };
 
 
 //
-//  get tweets from 'server' & render to page
+//  get tweets from server & render to page
 //
 const loadTweets = () => {
   $.get("/tweets/", function(tweetData) {                 // https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
@@ -87,20 +82,20 @@ const loadTweets = () => {
 //
 const toggleTweetForm = (forceOpen) => {
   const slideSpeed = 300;
-  if (forceOpen === true) {                             // ! we can also: if ($("#newtweetform").is(":visible") == true) {}
+  if (forceOpen === true) {                             // ! we can also use: if ($("#newtweetform").is(":visible") == true) {}
     inputFormState = 0;                                // 0 closed, 1 open
   }
   if (inputFormState === 0) {
+    $("#submit").removeClass("shake");                 // css animation is a bit finiky to reset it, so remove it when possible
     $("#newtweetform").slideDown(slideSpeed);          // open input form
     $("#tweet-text").focus();                          // give form input FOCUS
     inputFormState = 1;
   } else {
     inputFormState = 0;
     $("#newtweetform").slideUp(slideSpeed);            // close input form
+    $("#submit").removeClass("shake");
   }
 };  
-// ! QUESTION: BEST PRACTICE - should we have these class names all assigned into (global) variables
-// ! for reference instead of 'hard coding' them?  
 
 
 //
@@ -108,7 +103,7 @@ const toggleTweetForm = (forceOpen) => {
 //
 $(document).on("click", ".fa-flag", function(event){
   const $aFlag = $(this).parent().find(".fa-flag");
-  event.stopPropagation();                              // ! QUESTION is stopPropagation to be used here?
+  event.stopPropagation();                                        // ! QUESTION is stopPropagation to be used here - or needed?
   if ($aFlag.hasClass("redflag")) {
     $aFlag.removeClass("redflag");
     $(this).parent().parent().parent().removeClass("redborder");  // ! QUESTION: what is best/better practice? this line or next?
@@ -116,10 +111,10 @@ $(document).on("click", ".fa-flag", function(event){
   } else {
     $aFlag.addClass("redflag");
     // let $mainTweet = $(this).parents().hasClass('tweets-layout');      // NOTE: parents (PLURAL) traverses UP the structure
-    // alert($mainTweet);                                                 // shows TRUE since we have a match
+    // alert($mainTweet);                                                 // shows TRUE since we have a match or FALSE if not
     
     $(this).parent().parent().parent().addClass("redborder");
-    //$(this).parent().parent().parent().siblings(".tweets-message").addClass("blurredtext");
+    //$(this).parent().parent().parent().siblings(".tweets-message").addClass("blurredtext");  // ! QUESTION WHY siblings() vs children()
     $(this).closest('.tweets-layout').children('.tweets-message').addClass("blurredtext");
   }
   // HOW TO continue this process:
@@ -131,7 +126,7 @@ $(document).on("click", ".fa-flag", function(event){
 
 
 //
-// process HEARTS on each tweet 
+// process HEARTS (likes) on each tweet 
 //
 $(document).on("click", ".fa-heart", function(){
   const $aFlag = $(this).parent().find(".fa-heart");
@@ -150,7 +145,7 @@ $(document).on("click", ".fa-heart", function(){
       likeCounter ++;
     }
   }
-  // update counter here
+  // update our heart/like counter here:
   $('#heartcounter').html("(" + likeCounter + ")");
 });
 
@@ -170,7 +165,7 @@ $(document).on("click", ".fa-retweet", function(){
   $('#tweet-text').val(reTweetMessage);
   // scroll to top (form area)
   document.body.scrollIntoView(true);
-});
+}); 
 
 
 //
@@ -206,7 +201,7 @@ $(document).ready(function() {
       // TODO - make this all a separate function that is called from document.read in this function - but separate so that
       // TODO - heart click can also call it to remove a tweet from view if unchecking heart while in the liked tweets only view
       for (var i = 0; i < likedTweets.length; i++) {
-        if ($(likedTweets[i]).hasClass("redflag")) { // if hidden & has 'heart' set, show tweet
+        if ($(likedTweets[i]).hasClass("redflag")) {                      // if hidden & has 'heart' set, show tweet
           $(likedTweets[i]).parent().parent().parent().removeClass("hide");
         } else {
           $(likedTweets[i]).parent().parent().parent().addClass("hide");  // hide the tweet as it's not liked.
@@ -219,7 +214,7 @@ $(document).ready(function() {
   $("#more").click(function() {
     // see how many tweetsOnDisplay
     // numTotalUnreadTweets
-    // remember we have to count backwards
+    // remember we have to count backwards as we're prepending tweets to top of list - not bottom!
     if (totalTweetsRemaining < 1) {
       $(".moreItems").addClass("hide");
       return;
@@ -234,11 +229,8 @@ $(document).ready(function() {
     totalTweetsRemaining -= tweetsPerLoad;
     tweetsOnDisplay = tweetsOnDisplay - tweetsPerLoad;  // TODO - clean this - am I using it with 'totalTweetsRemaining'?
     $("#more").attr("data-badge",totalTweetsRemaining);
-    // UPDATE HTML to show # of tweets remaining: can we put badge on the "more"? 
-    // $('#error-block').html -- numTotalUnreadTweets - tweetsOnDisplay
-
       if (totalTweetsRemaining < 1) {
-        $(".moreItems").addClass("hide");
+        $(".moreItems").addClass("hide");               // don't display "more" if there aren't any more!
         tweetsOnDisplay = 0;
       }
   });
@@ -250,7 +242,6 @@ $(document).ready(function() {
   // process form submission
   //
   $("#new-tweet-form").submit(function(event) {
-    //const maxTweetChars = 140;
     event.preventDefault();
 
     // error check submission
@@ -284,13 +275,6 @@ $(document).ready(function() {
   // render our page of all tweets in database
   //
   loadTweets();
-  
-  /*
-   // toggle 'flag' for review on tweets
-   $(".fa-flag").click(function() {                 // and the 'write a new tweet' text // ! QUEsTION - why doesn't work and flag2 does?
-    alert("flag1");
-  });
-  */
 
   //
   // monitor scrolling so we can update for unread tweets

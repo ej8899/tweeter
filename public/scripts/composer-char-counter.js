@@ -8,7 +8,7 @@
 //  global vars
 //
 const maxTweetChars = 140;      // maximum characters allowed for 'tweets'.
-const errorSlideDownSpeed = 300;    // slider DOWN speed for error drop downs
+const errorSlideDownSpeed = 500;    // slider DOWN speed for error drop downs
 const errorSlideUpSpeed = 100;  // slider UP speed for error drop downs
 
 //
@@ -33,10 +33,10 @@ const fetchDadJoke = function() {
     },
     contentType: "application/json",
     dataType: 'json',
-    // NOTE use different that below commented section when using async false - see jqXHR object for details
+    // NOTE use different than below commented section when using async false - see jqXHR object for details
     // success: function(data) { alert(data.joke); return (data.joke); },
   });
-  let response = JSON.parse(jqXHR.responseText);            // https://www.sitepoint.com/jqxhr-object/
+  let response = JSON.parse(jqXHR.responseText);            // REFERENCE: https://www.sitepoint.com/jqxhr-object/
   return (response.joke);
 };
 
@@ -46,12 +46,10 @@ const fetchDadJoke = function() {
 // swap class to 'toomanychars' (which changes to red) & reverse if ok
 //
 $(document).ready(function() {
-  // process character counter counts
   $("#tweet-text").on("input", function() {                       // update character counter in tweet form
     
     const inputChar = $(this).val().length;
     const charCounter = maxTweetChars - inputChar;
-
     const $inputCounter = $(this).parent().find(".counter");
 
     $inputCounter.text(charCounter);
@@ -70,11 +68,11 @@ $(document).ready(function() {
   // user wants a dad joke
   //
   $("#dadjoke").click(function() {
+    $("#submit").removeClass("shake");
     let theJoke = fetchDadJoke();
     if (theJoke.length > maxTweetChars) {                         // TODO: any errors we should check for?
       theJoke = "No jokes available right now.";
     }
-    $("#submit").removeClass("shake");
     $('#tweet-text').val(theJoke);
     $("#error-block").hide();
     $("#tweet-text").css("outline","none");
