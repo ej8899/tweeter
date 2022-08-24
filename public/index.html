@@ -30,8 +30,6 @@
     <!-- Internal JS -->
     <script type="text/javascript" src="/scripts/composer-char-counter.js" defer></script>
     <script type="text/javascript" src="/scripts/client.js" defer></script>
-
-    
   </head>
 
   <body>
@@ -64,9 +62,9 @@
       <!-- end: top header -->
 
     <!-- start: MAIN section-->
-    <main class="container"
+    <main class="container">
 
-      <!-- start: create a tweet form -->
+      <!-- START: create a tweet form -->
       <section class="new-tweet" id="newtweetform">
         <form action="/tweets" method="POST" class="new-tweet-form" id ="new-tweet-form">
           <!-- START NEW TWEET BODY -->
@@ -87,7 +85,7 @@
           <!-- END CREATE NEW TWEET FOOTER -->
         </form>
       </section>
-      <!-- end: create a tweet form -->
+      <!-- END: create a tweet form -->
       
       
 
@@ -111,11 +109,11 @@
     <!-- END: MAIN SECTION -->
     </div> <!-- END: wrapper for main and head -->
 
-  
-
+    <!-- START: floater icon for scroll to top -->
     <a href="javascript: document.body.scrollIntoView(true); toggleTweetForm(true);" class="float" id="floater">
       <i class="fa-solid fa-arrow-up my-float"></i><small class="badge" id="badge">0</small>
     </a>
+    <!-- END: end floater icon -->
     
   </body>
 </html>
