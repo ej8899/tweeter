@@ -4,6 +4,12 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+//
+//  TWEETER - client.js
+//  - main client side JS file - use with composer-char-counter.js and index.html
+//  - LHL project "Tweeter" - 
+//  - https://flex-web.compass.lighthouselabs.ca/workbooks/flex-m04w8/activities/587?journey_step=39&workbook=11
+//  2022-08-23 -- http://www.github.com/ej8899/tweeter 
 
 //
 // global variables
@@ -304,6 +310,8 @@ $(document).ready(function() {
       // show 'to top' float button
       $("#floater").show();
       $("#writenewlink").hide();
+      $("#submit").removeClass("shake");
+      $("#newtweetform").hide();
     } else {
       $("#floater").hide();
       $("#writenewlink").show();

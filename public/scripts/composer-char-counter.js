@@ -74,7 +74,11 @@ $(document).ready(function() {
     if (theJoke.length > maxTweetChars) {                         // TODO: any errors we should check for?
       theJoke = "No jokes available right now.";
     }
+    $("#submit").removeClass("shake");
     $('#tweet-text').val(theJoke);
+    $("#error-block").hide();
+    $("#tweet-text").css("outline","none");
+    $("#submit").addClass("shake");
   });
 
   //
@@ -102,7 +106,11 @@ $(document).ready(function() {
     ];
     let rando = randomNumber(0,randomQuotes.length);
     
+    $("#submit").removeClass("shake");
     $('#tweet-text').val(randomQuotes[rando]);
+    $("#error-block").hide();
+    $("#tweet-text").css("outline","none");
+    $("#submit").addClass("shake");
   });
 }); // END DOCUMENT READY
 
