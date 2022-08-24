@@ -33,7 +33,7 @@ const renderTweets = (tweets) => {
   for (let x = 0; x < tweets.length; x ++) {
     if (x < (tweets.length - tweetsPerLoad)) { extraClass = "hide"; } else { extraClass = ""; }
     const tweet = createTweetElement(tweets[x],extraClass,x);
-    $('#tweets-container').prepend(tweet);
+    $('#tweet-container').prepend(tweet);
   }
   totalTweetsRemaining = tweets.length - tweetsPerLoad;
   $("#more").attr("data-badge",(totalTweetsRemaining));
@@ -48,13 +48,13 @@ const createTweetElement = (tweetData,extraClass,id) => {
   // timeago.format(1473245023718);                 // using timeago library - see index.html for SCRIPT link
   let timeStamp = timeago.format(tweetData.created_at);
   let escapeTextElement = escapeText(tweetData.content.text);
-  let tweetContainer = `      <article class="tweets-layout ${extraClass}" id="id-${id}">
-                                <div class="tweets-header">
+  let tweetContainer = `      <article class="tweet-layout ${extraClass}" id="id-${id}">
+                                <div class="tweet-header">
                                   <div><IMG SRC="${tweetData.user.avatars}"> ${tweetData.user.name}</div>
                                   <div>${tweetData.user.handle}</div>
                                 </div>
-                                <div class="tweets-message">${escapeTextElement}</div>
-                                <footer class="tweets-footer">
+                                <div class="tweet-message">${escapeTextElement}</div>
+                                <footer class="tweet-footer">
                                   <div>${timeStamp}</div> 
                                   <div>
                                     <i class="fa-solid fa-flag icon tooltip"><span class="tooltiptext">file a complaint</span></i>&nbsp;<i class="fa-solid fa-retweet icon tooltip"><span class="tooltiptext">re-tweeter this</span></i>&nbsp;<i class="fa-solid fa-heart icon tooltip"><span class="tooltiptext">like this</span></i>

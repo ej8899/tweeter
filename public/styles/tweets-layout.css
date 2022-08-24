@@ -1,11 +1,11 @@
 /*
 
-CSS for tweets-container
+CSS for individual tweet-container
 
 */
 
 
-#tweets-container {
+#tweet-container {
   display:flex;
   justify-content: space-between;
   width: 90%;
@@ -14,7 +14,7 @@ CSS for tweets-container
   align-items: center;
 }
 
-.tweets-header {
+.tweet-header {
   display:flex;
   flex-direction: row;
   width: 95%;
@@ -23,7 +23,7 @@ CSS for tweets-container
   color: #545149c3;
 }
 
-.tweets-layout {
+.tweet-layout {
   display:flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,18 +37,18 @@ CSS for tweets-container
   padding: 20px;
   margin-bottom: 20px;
 }
-.tweets-layout:hover {
+.tweet-layout:hover {
   box-shadow: 0px 0px 20px rgba(0, 128, 128, 0.806);
 }
 
-.tweets-message {
+.tweet-message {
   width: 95%;
   padding-top: 20px;
   padding-bottom: 10px;
   text-align: left;
 }
 
-.tweets-footer {
+.tweet-footer {
   display: flex;
   border-style: solid none none none;
   flex-direction: row;
