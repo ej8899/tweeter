@@ -3,10 +3,12 @@
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
  */
+
+$primary-header: teal;
+
 html {
   box-sizing: border-box;
 }
-
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -14,6 +16,7 @@ html {
 /*
  * Global layout components
  */
+
 body {
   display: flex;
   flex-direction: column;
@@ -21,7 +24,7 @@ body {
   color: #545149;
   background-color: rgba(73, 143, 143, 0.536);
   font-size: 24px;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   align-items: center;
   align-content: center;
   overflow: scroll;
@@ -29,10 +32,11 @@ body {
 
 main {
   margin-top: 20px;
-  display: flex;
+  display:flex;
   flex-direction: column;
   width: 100%;
   height: auto;
+  
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -52,6 +56,7 @@ main {
     flex-direction: column;
     margin-top: 20px;
   }
+
   .wrapper {
     display: flex;
     flex-direction: row;
@@ -60,73 +65,71 @@ main {
     width: 100%;
   }
 }
+
 .icon {
-  color: #545149;
+  color:#545149;
 }
-
 .icon:hover {
-  color: #FD5901;
+  color:#FD5901;
 }
 
-.float {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 100px;
-  right: 40px;
-  background-color: rgb(73, 143, 143);
-  color: black;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 2px 2px 3px #545149;
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:100px;
+	right:40px;
+	background-color:rgb(73, 143, 143);
+	color: black;
+	border-radius:20px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #545149;
 }
 
-.my-float {
-  margin-top: 22px;
+.my-float{
+	margin-top:22px;
 }
+
 
 .moreItems {
   display: flex;
   width: 90%;
   font-weight: bold;
   border-radius: 5px;
-  border: 2px solid teal;
+  border: 2px solid $primary-header;
   padding: 5px;
   margin-bottom: 20px;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 128, 128, 0.199);
 }
-
 .moreItems:hover {
   color: #FD5901;
   cursor: pointer;
 }
 
 .moreText {
-  align-items: center;
+  align-items:center;
   max-width: 213px;
 }
-
 .badge2 {
-  position: relative;
+  position:relative;
 }
-
 .badge2[data-badge]:after {
-  display: flex;
+  display:flex;
   align-items: center;
   justify-content: center;
-  content: attr(data-badge);
-  position: absolute;
-  top: -5px;
+  content:attr(data-badge);
+  position:absolute;
+  top:-5px;
   right: -25px;
-  font-size: 0.8em;
-  background: rgba(253, 89, 1, 0.662745098);
-  color: white;
-  width: 32px;
-  height: 24px;
-  text-align: center;
-  line-height: 18px;
-  border-radius: 20%;
-  box-shadow: 0 0 1px #333;
+  font-size:.8em;
+  background:#fd5901a9;
+  color:white;
+  width:32px;height:24px;
+  text-align:center;
+  
+  line-height:18px;
+  border-radius:20%;
+  box-shadow:0 0 1px #333;
 }

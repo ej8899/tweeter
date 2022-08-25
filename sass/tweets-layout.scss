@@ -3,8 +3,10 @@
 CSS for individual tweet-container
 
 */
+@import 'foundation/variables';
+
 #tweet-container {
-  display: flex;
+  display:flex;
   justify-content: space-between;
   width: 90%;
   font-family: sans-serif;
@@ -13,34 +15,34 @@ CSS for individual tweet-container
 }
 
 .tweet-header {
-  display: flex;
+  display:flex;
   flex-direction: row;
   width: 95%;
   justify-content: space-between;
-  font-family: "Source Sans Pro", sans-serif;
-  color: rgba(84, 81, 73, 0.7647058824);
+  font-family: 'Source Sans Pro', sans-serif;
+  color: $color-main-text;
 }
 
 .tweet-layout {
-  display: flex;
+  display:flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  background-color: #e7cda2;
+  background-color:#e7cda2;
   font-family: sans-serif;
   border-style: groove;
   align-items: center;
   border-radius: 5px;
-  border: 2px solid teal;
+  border: 2px solid $color-primary-header;
   padding: 20px;
   margin-bottom: 20px;
-  will-change: filter;
-  transition: filter 0.2s ease-out;
-}
 
+  will-change: filter;
+  transition: filter .2s ease-out;
+}
 .tweet-layout:hover {
   /* box-shadow: 0px 0px 20px rgba(0, 128, 128, 0.806); */
-  filter: drop-shadow(0px 0px 20px rgba(0, 128, 128, 0.806));
+  filter: drop-shadow(0px 0px 20px rgba(0,128,128,0.806));
 }
 
 .tweet-message {
@@ -63,7 +65,7 @@ CSS for individual tweet-container
 }
 
 .redflag {
-  color: red;
+  color:red;
 }
 
 .redborder {
@@ -72,7 +74,7 @@ CSS for individual tweet-container
 
 .blurredtext {
   color: transparent;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
 .hide {

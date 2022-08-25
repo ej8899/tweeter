@@ -82,6 +82,7 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 - [conColors](https://github.com/ej8899/conColors) (miscellaneous functions)
 - FontAwesome
 - Google Fonts
+- SASS (CSS pre-processor)
 - Ajax
 - Node.js
 - JQuery  
