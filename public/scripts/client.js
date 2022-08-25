@@ -126,7 +126,7 @@ $(document).on("click", ".fa-flag", function(event){
   if ($aFlag.hasClass("redflag")) {
     $aFlag.removeClass("redflag");
     $(this).parent().parent().parent().removeClass("redborder");  // ! QUESTION: what is best/better practice? this line or next?
-    $(this).closest('.tweets-layout').children('.tweets-message').removeClass("blurredtext");
+    $(this).closest('.tweet-layout').children('.tweet-message').removeClass("blurredtext");
   } else {
     $aFlag.addClass("redflag");
     // let $mainTweet = $(this).parents().hasClass('tweets-layout');      // NOTE: parents (PLURAL) traverses UP the structure
@@ -134,7 +134,7 @@ $(document).on("click", ".fa-flag", function(event){
     
     $(this).parent().parent().parent().addClass("redborder");
     //$(this).parent().parent().parent().siblings(".tweets-message").addClass("blurredtext");  // ! QUESTION WHY siblings() vs children()
-    $(this).closest('.tweets-layout').children('.tweets-message').addClass("blurredtext");
+    $(this).closest('.tweet-layout').children('.tweet-message').addClass("blurredtext");
   }
   // HOW TO continue this process:
   // let's add another class which is unique ID for this message so we can reference it
@@ -177,7 +177,7 @@ $(document).on("click", ".fa-retweet", function(){
 
   $aFlag.addClass("redflag");   // might already be set, but that's ok - not removing it as already 'retweeted'
   // get message out of tweets-message class container
-  let reTweetMessage = $(this).closest('.tweets-layout').children('.tweets-message').text();
+  let reTweetMessage = $(this).closest('.tweet-layout').children('.tweet-message').text();
   // slide open tweet form
   toggleTweetForm(true);        // force tweet window open
   // populate it
