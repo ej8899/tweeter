@@ -4,6 +4,7 @@
 //  - LHL project "Tweeter" - 
 //  - https://flex-web.compass.lighthouselabs.ca/workbooks/flex-m04w8/activities/587?journey_step=39&workbook=11
 //  2022-08-23 -- http://www.github.com/ej8899/tweeter
+//  https://twitter.com/ejdevscom 
 //
 
 //
@@ -20,6 +21,24 @@ const escapeText = function (str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
+};
+
+
+//
+// restartAnimation(element ID or Class)
+// reset CSS animation
+// example: resetAnimation("#submitbutton");   or resetAnimation(".formfields");  ** UNTESTED on classes!
+// after calling this function, add your class back on the element to restart animation.
+// reference: https://www.kirupa.com/animations/restarting_css_animations.htm - video at 08:10 has explanation
+//
+const restartAnimation = (element) => {
+  let animatedElement = document.querySelector(element);
+  animatedElement.style.animationName = "none";
+  requestAnimationFrame(() => {           // http://www.javascriptkit.com/javatutors/requestanimationframe.shtml
+    setTimeout(() => {
+      animatedElement.style.animationName = ""
+    }, 0);
+  });
 };
 
 
@@ -93,7 +112,7 @@ const toggleTweetForm = (forceOpen) => {
   } else {
     inputFormState = 0;
     $("#newtweetform").slideUp(slideSpeed);            // close input form
-    $("#submit").removeClass("shake");
+    $("#submit").removeClass("shake");                 // css animation is a bit finiky to reset it, so remove it when possible
   }
 };  
 
@@ -294,7 +313,7 @@ $(document).ready(function() {
       // show 'to top' float button
       $("#floater").show();
       $("#writenewlink").hide();
-      $("#submit").removeClass("shake");
+      //$("#submit").removeClass("shake");
       $("#newtweetform").hide();
     } else {
       $("#floater").hide();

@@ -68,15 +68,16 @@ $(document).ready(function() {
   // user wants a dad joke
   //
   $("#dadjoke").click(function() {
-    $("#submit").removeClass("shake");
     let theJoke = fetchDadJoke();
     if (theJoke.length > maxTweetChars) {                         // TODO: any errors we should check for?
       theJoke = "No jokes available right now.";
     }
+    
     $('#tweet-text').val(theJoke);
     $("#error-block").hide();
     $("#tweet-text").css("outline","none");
     $("#submit").addClass("shake");
+    restartAnimation("#submit");
   });
 
   //
@@ -104,11 +105,13 @@ $(document).ready(function() {
     ];
     let rando = randomNumber(0,randomQuotes.length);
     
-    $("#submit").removeClass("shake");
+  
+    
     $('#tweet-text').val(randomQuotes[rando]);
     $("#error-block").hide();
     $("#tweet-text").css("outline","none");
-    $("#submit").addClass("shake");
+    $("#submit").addClass("shake");                 // css animation is a bit finiky to reset it
+    restartAnimation("#submit");
   });
 }); // END DOCUMENT READY
 
