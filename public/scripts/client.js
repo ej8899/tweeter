@@ -1,8 +1,9 @@
 //
 //  TWEETER - client.js
-//  - main client side JS file - use with composer-char-counter.js and index.html
-//  - LHL project "Tweeter" -
-//  - https://flex-web.compass.lighthouselabs.ca/workbooks/flex-m04w8/activities/587?journey_step=39&workbook=11
+//  main client side JS file - use with composer-char-counter.js and index.html
+//  LHL project "Tweeter" -
+//  https://flex-web.compass.lighthouselabs.ca/workbooks/flex-m04w8/activities/587?journey_step=39&workbook=11
+//
 //  2022-08-23 -- http://www.github.com/ej8899/tweeter
 //  https://twitter.com/ejdevscom
 //
@@ -12,9 +13,36 @@
 //
 let numTotalUnreadTweets = 0, inputFormState = 0, tweetsOnDisplay = 0, tweetsPerLoad = 10, totalTweetsRemaining = 0;
 
+// toggle to switch classes between .light and .dark
+// if no class is present (initial state), then assume current state based on system color scheme
+// if system color scheme is not supported, then assume current state is light
+toggleDarkMode = function() {
+  if (document.documentElement.classList.contains("light")) {
+    document.documentElement.classList.remove("light");
+    document.documentElement.classList.add("dark");
+    $("#daynightmode").addClass("fa-sun");
+    $("#daynightmode").removeClass("fa-moon");
+  } else if (document.documentElement.classList.contains("dark")) {
+    document.documentElement.classList.remove("dark");
+    document.documentElement.classList.add("light");
+    $("#daynightmode").removeClass("fa-sun");
+    $("#daynightmode").addClass("fa-moon");
+  } else {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add("dark");
+      $("#daynightmode").removeClass("fa-moon");
+      $("#daynightmode").addClass("fa-sun");
+    } else {
+      document.documentElement.classList.add("light");
+      $("#daynightmode").removeClass("fa-sun");
+      $("#daynightmode").addClass("fa-moon");
+    }
+  }
+};
+
 
 //
-//  escape() - escape and bad text for cross-site-scripting
+//  escape() - escape any bad text for cross-site-scripting
 //  https://flex-web.compass.lighthouselabs.ca/workbooks/flex-m04w9/activities/629?journey_step=49&workbook=19
 //
 const escapeText = function(str) {
@@ -115,11 +143,8 @@ $(document).on("click", ".fa-flag", function(event) {
     $(this).closest('.tweet-layout').children('.tweet-message').removeClass("blurredtext");
   } else {
     $aFlag.addClass("redflag");
-    // let $mainTweet = $(this).parents().hasClass('tweets-layout');      // NOTE: parents (PLURAL) traverses UP the structure
-    // alert($mainTweet);                                                 // shows TRUE since we have a match or FALSE if not
     
     $(this).parent().parent().parent().addClass("redborder");
-    //$(this).parent().parent().parent().siblings(".tweets-message").addClass("blurredtext");  // ! QUESTION WHY siblings() vs children()
     $(this).closest('.tweet-layout').children('.tweet-message').addClass("blurredtext");
   }
   // HOW TO continue this process:
@@ -170,6 +195,8 @@ $(document).on("click", ".fa-retweet", function() {
   $('#tweet-text').val(reTweetMessage);
   // scroll to top (form area)
   document.body.scrollIntoView(true);
+  $("#submit").addClass("shake");                 // css animation is a bit finiky to reset it
+  restartAnimation("#submit");
 });
 
 
@@ -232,7 +259,7 @@ $(document).ready(function() {
       $(divId).removeClass("hide");
     }
     totalTweetsRemaining -= tweetsPerLoad;
-    tweetsOnDisplay = tweetsOnDisplay - tweetsPerLoad;  // TODO - clean this - am I using it with 'totalTweetsRemaining'?
+    tweetsOnDisplay = tweetsOnDisplay - tweetsPerLoad;
     $("#more").attr("data-badge",totalTweetsRemaining);
     if (totalTweetsRemaining < 1) {
       $(".moreItems").addClass("hide");               // don't display "more" if there aren't any more!
@@ -258,12 +285,12 @@ $(document).ready(function() {
     if ((maxTweetChars - tweetLength) < 0) {              // error check for tweet TOO LONG
       $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message is too long!");
       $("#error-block").slideDown(errorSlideDownSpeed);
-      $("#tweet-text").css("outline","2px solid red");
+      $("#tweet-text").css("outline","2px solid var(--red)");
     } else if (tweetLength === 0) {                       // error check for tweet EMPTY
       $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message is missing!");
       $("#error-block").slideDown(errorSlideDownSpeed);
       
-      $("#tweet-text").css("outline","2px solid red");
+      $("#tweet-text").css("outline","2px solid var(--red)");
       
     } else {                                              // error checks all good, allow post to submit
       const newTweet = $(this).serialize();
@@ -296,10 +323,8 @@ $(document).ready(function() {
     $('#badge').html(Math.floor(remainingTweets));
 
     if (scrollPos > 200) {
-      // show 'to top' float button
-      $("#floater").show();
-      $("#writenewlink").hide();
-      //$("#submit").removeClass("shake");
+      $("#floater").show();           // show 'to top' float button
+      $("#writenewlink").hide();      // hide the top 'write new tweet'
       $("#newtweetform").hide();
     } else {
       $("#floater").hide();

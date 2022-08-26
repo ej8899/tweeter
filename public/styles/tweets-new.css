@@ -27,10 +27,10 @@
   width: 100%;
   padding: 12px 20px;
   box-sizing: border-box;
-  border: 5px solid rgba(84, 81, 73, 0.7647058824);
+  border: 5px solid var(--tweetcontentcolor);
   border-style: none none solid;
   border-radius: 5px;
-  background-color: rgba(243, 184, 96, 0.7882352941);
+  background-color: var(--submitformcolor);
   font-size: 24px;
   font-family: "Source Sans Pro", sans-serif;
   resize: none;
@@ -38,7 +38,7 @@
 
 .newtweet-textarea:focus {
   outline: none;
-  outline-color: red;
+  outline-color: var(--red);
 }
 
 .newtweet-label {
@@ -86,11 +86,11 @@
   }
 }
 .toomanychars {
-  color: red;
+  color: var(--red);
 }
 
 .error-message-box {
-  background-color: rgba(255, 0, 0, 0.328);
+  background-color: var(--errorboxcolor);
   color: #353432;
   border: none;
   padding: 10px;

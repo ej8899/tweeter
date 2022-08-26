@@ -33,14 +33,14 @@
   border: 5px solid $color-main-text;
   border-style: none none solid ;
   border-radius: 5px;
-  background-color: #f3b860c9;
+  background-color: var(--submitformcolor);
   font-size: 24px;
   font-family: 'Source Sans Pro', sans-serif;
   resize: none;
 }
 .newtweet-textarea:focus {
   outline: none;
-  outline-color:red;
+  outline-color: var(--red);
 }
 
 .newtweet-label {
@@ -81,11 +81,11 @@
 }
 
 .toomanychars {
-  color: red
+  color: var(--red);
 }
 
 .error-message-box {
-  background-color: rgba(255, 0, 0, 0.328);
+  background-color: var(--errorboxcolor);
   color:#353432;
   border: none;
   padding: 10px;

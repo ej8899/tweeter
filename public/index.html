@@ -32,7 +32,7 @@
     <script type="text/javascript" src="/scripts/client.js" defer></script>
   </head>
 
-  <body>
+  <body class="scrollbar-auto">
     
     <!-- START: TOP NAV BAR -->
     <nav class="nav">
@@ -55,7 +55,8 @@
             <div class="h3">
                 <i class="fa-solid fa-heart-circle-check writenewlink tooltip">
                 <span class="tooltiptext">click to view only liked tweets</span></i>
-                <div id="heartcounter">(0)</div>
+                <div id="heartcounter">(0)</div>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <div><i class="fa-solid fa-moon writenewlink" id="daynightmode" onClick="toggleDarkMode()"></i></div>
             </div>
         </div>
       </header>

@@ -3,16 +3,24 @@
 // set global COLOR variables
 // 
 
-$color-primary-header:  teal;
-$color-main-text:       #545149c3;
+$color-primary-header:  var(--wasteal);
+$color-main-text: var(--tweetcontentcolor);
 
 
 // 
 // set global mixins/groups
 // 
 
-@mixin valignFlex($theme: center) {
-  display:flex;
-  justify-content: $theme;
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  flex-direction: $direction;
 }
 
+
+
+
+// SASS 'crash course' video: https://www.youtube.com/watch?v=Zz6eOVaaelI
+// SASS 2hr course: https://www.youtube.com/watch?v=_a5j7KoflTs
+// SASS - 30 minutes: https://www.youtube.com/watch?v=1rzjMyOkyoQ

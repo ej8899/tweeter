@@ -19,6 +19,8 @@ nav {
   width: 100%;
   color: rgb(0, 0, 0);  
   background-color: $color-primary-header;
+  border: 2px solid  var(--headerbordercolor);
+  border-style: none none solid none;
   z-index: 10;
 
 
@@ -30,7 +32,7 @@ nav {
   font-family: 'Bungee', sans-serif;
   justify-content: center;
   text-align: end;
-  text-shadow: 0px 0px 32px #FD5901;
+  text-shadow: 0px 0px 32px var(--titleglowcolor);
 }
 
 .writenew {
@@ -47,3 +49,4 @@ nav {
 .writenewlink {
   cursor: pointer;
 }
+

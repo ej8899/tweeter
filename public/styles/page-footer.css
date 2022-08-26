@@ -22,6 +22,6 @@ CSS for page footer
     align-items: center;
     border-top: 3px;
     border-style: solid none none none;
-    border-color: rgba(84, 81, 73, 0.7647058824);
+    border-color: var(--tweetcontentcolor);
   }
 }

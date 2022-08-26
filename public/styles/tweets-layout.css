@@ -18,7 +18,7 @@ CSS for individual tweet-container
   width: 95%;
   justify-content: space-between;
   font-family: "Source Sans Pro", sans-serif;
-  color: rgba(84, 81, 73, 0.7647058824);
+  color: var(--tweetcontentcolor);
 }
 
 .tweet-layout {
@@ -26,12 +26,12 @@ CSS for individual tweet-container
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  background-color: #e7cda2;
+  background-color: var(--tweetsbackgroundcolor);
   font-family: sans-serif;
   border-style: groove;
   align-items: center;
   border-radius: 5px;
-  border: 2px solid teal;
+  border: 2px solid var(--wasteal);
   padding: 20px;
   margin-bottom: 20px;
   will-change: filter;
@@ -47,6 +47,7 @@ CSS for individual tweet-container
   padding-top: 20px;
   padding-bottom: 10px;
   text-align: left;
+  color: var(--tweetcontentcolor);
 }
 
 .tweet-footer {
@@ -58,14 +59,15 @@ CSS for individual tweet-container
   font-size: 0.8em;
   margin-top: 5px;
   padding-top: 5px;
+  color: var(--tweetcontentcolor);
 }
 
 .redflag {
-  color: red;
+  color: var(--red);
 }
 
 .redborder {
-  border: 2px solid red;
+  border: 2px solid var(--red);
 }
 
 .blurredtext {

@@ -8,16 +8,14 @@ CSS for body header / (user and large avatar)
 
 
 header {
-  @include valignFlex;
-  flex-direction: column;
-  align-items: center;
+  @include flexCenter(column);
   
   height: 400px;
   width: 100%;
   margin-top: 120px;
 
   color: rgb(0, 0, 0);
-  background-color: rgb(0, 95, 95);
+  background-color: var(--wasteal);
   opacity: .8;
   background-image: url("https://www.transparenttextures.com/patterns/gun-metal.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
@@ -29,7 +27,7 @@ header {
 }
 
 .h3 {
-  @include valignFlex;
+  @include flexCenter(row);
   font-size: 18pt;
 }
 
@@ -43,6 +41,6 @@ header {
     max-width: 33%;
     margin-left: 20px;
     border-radius: 10px;
-    border: 2px solid $color-primary-header;
+    border: 2px solid  var(--headerbordercolor);
   }
 }

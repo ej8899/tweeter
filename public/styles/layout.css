@@ -14,12 +14,63 @@ html {
 /*
  * Global layout components
  */
+:root {
+  --rich-black: #0a0a0aff;
+  --eerie-black:#1a181aff;
+  --davys-grey: #505050ff;
+  --persian-red:#d1342fff;
+  --black-olive:#434038ff;
+  --dutch-white:rgb(179, 173, 156);
+}
+
+:root.dark {
+  --bodybackgroundcolor: var(--eerie-black);
+  --iconcolor: var(--dutch-white);
+  --tweetsbackgroundcolor: rgb(50, 50, 50);
+  --tweetcontentcolor: var(--dutch-white);
+  --wasteal: var(--davys-grey);
+  --red: var(--persian-red);
+  --submitformcolor: var(--dutch-white);
+  --titleglowcolor: teal;
+  --headerbordercolor: var(--dutch-white);
+  --errorboxcolor: rgba(214, 207, 5, 0.675);
+  color-scheme: dark;
+}
+
+:root.light {
+  --bodybackgroundcolor: rgba(73,143,143,0.536);
+  --iconcolor: #545149;
+  --tweetsbackgroundcolor: #e7cda2;
+  --tweetcontentcolor: #545149c3;
+  --wasteal: teal;
+  --red: red;
+  --submitformcolor: #f3b860c9;
+  --titleglowcolor: #FD5901;
+  --headerbordercolor: rgb(3, 84, 84);
+  --errorboxcolor: rgba(255, 0, 0, 0.328);
+  color-scheme: light;
+}
+
+:root {
+  --bodybackgroundcolor: rgba(73,143,143,0.536);
+  --iconcolor: #545149;
+  --tweetsbackgroundcolor: #e7cda2;
+  --tweetcontentcolor: #545149c3;
+  --wasteal: teal;
+  --red: red;
+  --submitformcolor: #f3b860c9;
+  --titleglowcolor: #FD5901;
+  --headerbordercolor: rgb(3, 84, 84);
+  --errorboxcolor: rgba(255, 0, 0, 0.328);
+  color-scheme: light;
+}
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   color: #545149;
-  background-color: rgba(73, 143, 143, 0.536);
+  background-color: var(--bodybackgroundcolor);
   font-size: 24px;
   font-family: "Source Sans Pro", sans-serif;
   align-items: center;
@@ -28,14 +79,14 @@ body {
 }
 
 main {
-  margin-top: 20px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  margin-top: 20px;
   width: 100%;
   height: auto;
   text-align: center;
-  align-items: center;
-  justify-content: center;
 }
 
 .wrapper {
@@ -61,7 +112,7 @@ main {
   }
 }
 .icon {
-  color: #545149;
+  color: var(--iconcolor);
 }
 
 .icon:hover {
@@ -87,15 +138,17 @@ main {
 
 .moreItems {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
   width: 90%;
   font-weight: bold;
   border-radius: 5px;
-  border: 2px solid teal;
+  border: 2px solid var(--wasteal);
   padding: 5px;
   margin-bottom: 20px;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 128, 128, 0.199);
+  background-color: var(--tweetsbackgroundcolor);
+  color: var(--tweetcontentcolor);
 }
 
 .moreItems:hover {
@@ -114,8 +167,9 @@ main {
 
 .badge2[data-badge]:after {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  flex-direction: row;
   content: attr(data-badge);
   position: absolute;
   top: -5px;
