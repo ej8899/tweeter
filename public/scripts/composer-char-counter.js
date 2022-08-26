@@ -12,6 +12,23 @@ const errorSlideDownSpeed = 500;    // slider DOWN speed for error drop downs
 const errorSlideUpSpeed = 100;  // slider UP speed for error drop downs
 
 //
+// restartAnimation(element ID or Class)
+// reset CSS animation
+// example: resetAnimation("#submitbutton");   or resetAnimation(".formfields");  ** UNTESTED on classes!
+// after calling this function, add your class back on the element to restart animation.
+// reference: https://www.kirupa.com/animations/restarting_css_animations.htm - video at 08:10 has explanation
+//
+const restartAnimation = (element) => {
+  let animatedElement = document.querySelector(element);
+  animatedElement.style.animationName = "none";
+  requestAnimationFrame(() => {           // http://www.javascriptkit.com/javatutors/requestanimationframe.shtml
+    setTimeout(() => {
+      animatedElement.style.animationName = "";
+    }, 0);
+  });
+};
+
+//
 // randomNumer(5,98);
 // return a random number between min and max supplied values
 // from library at http://www.github.com/ej8899/conColors/

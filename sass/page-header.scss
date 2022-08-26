@@ -5,10 +5,7 @@ CSS for body header / (user and large avatar)
 */
 @import 'foundation/variables';
 
-@mixin valignFlex($theme: center) {
-  display:flex;
-  justify-content: $theme;
-}
+
 
 header {
   @include valignFlex;

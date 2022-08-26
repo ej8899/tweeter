@@ -18,7 +18,7 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 8. [Updates](#updates)
 --- 
 ## Features...  
-![](tweeter.gif)
+![](tweeterdemo.gif)
 - Mobile & desktop friendly.
   - mobile view under 1024 pixels wide
   - footer adjustment under 550 pixels wide   

@@ -1,2 +1,18 @@
-$color-primary-header: teal;
-$color-main-text:  #545149c3;
+
+//
+// set global COLOR variables
+// 
+
+$color-primary-header:  teal;
+$color-main-text:       #545149c3;
+
+
+// 
+// set global mixins/groups
+// 
+
+@mixin valignFlex($theme: center) {
+  display:flex;
+  justify-content: $theme;
+}
+

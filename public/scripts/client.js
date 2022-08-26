@@ -1,10 +1,10 @@
 //
 //  TWEETER - client.js
 //  - main client side JS file - use with composer-char-counter.js and index.html
-//  - LHL project "Tweeter" - 
+//  - LHL project "Tweeter" -
 //  - https://flex-web.compass.lighthouselabs.ca/workbooks/flex-m04w8/activities/587?journey_step=39&workbook=11
 //  2022-08-23 -- http://www.github.com/ej8899/tweeter
-//  https://twitter.com/ejdevscom 
+//  https://twitter.com/ejdevscom
 //
 
 //
@@ -17,28 +17,10 @@ let numTotalUnreadTweets = 0, inputFormState = 0, tweetsOnDisplay = 0, tweetsPer
 //  escape() - escape and bad text for cross-site-scripting
 //  https://flex-web.compass.lighthouselabs.ca/workbooks/flex-m04w9/activities/629?journey_step=49&workbook=19
 //
-const escapeText = function (str) {
+const escapeText = function(str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
-};
-
-
-//
-// restartAnimation(element ID or Class)
-// reset CSS animation
-// example: resetAnimation("#submitbutton");   or resetAnimation(".formfields");  ** UNTESTED on classes!
-// after calling this function, add your class back on the element to restart animation.
-// reference: https://www.kirupa.com/animations/restarting_css_animations.htm - video at 08:10 has explanation
-//
-const restartAnimation = (element) => {
-  let animatedElement = document.querySelector(element);
-  animatedElement.style.animationName = "none";
-  requestAnimationFrame(() => {           // http://www.javascriptkit.com/javatutors/requestanimationframe.shtml
-    setTimeout(() => {
-      animatedElement.style.animationName = ""
-    }, 0);
-  });
 };
 
 
@@ -50,7 +32,11 @@ const renderTweets = (tweets) => {
   numTotalUnreadTweets = tweets.length;
   tweetsOnDisplay = numTotalUnreadTweets - tweetsPerLoad;
   for (let x = 0; x < tweets.length; x ++) {
-    if (x < (tweets.length - tweetsPerLoad)) { extraClass = "hide"; } else { extraClass = ""; }
+    if (x < (tweets.length - tweetsPerLoad)) {
+      extraClass = "hide";
+    } else {
+      extraClass = "";
+    }
     const tweet = createTweetElement(tweets[x],extraClass,x);
     $('#tweet-container').prepend(tweet);
   }
@@ -69,8 +55,8 @@ const createTweetElement = (tweetData,extraClass,id) => {
   let escapeTextElement = escapeText(tweetData.content.text);
   let tweetContainer = `      <article class="tweet-layout ${extraClass}" id="id-${id}">
                                 <div class="tweet-header">
-                                  <div><IMG SRC="${tweetData.user.avatars}"> ${tweetData.user.name}</div>
-                                  <div>${tweetData.user.handle}</div>
+                                  <div style="display: flex; justify-content: flex-start; align-items:center;"><div><IMG SRC="${tweetData.user.avatars}"></div><div style="padding-left:15px">${tweetData.user.name}</div></div>
+                                  <div style="display: flex; align-items: center">${tweetData.user.handle}</div>
                                 </div>
                                 <div class="tweet-message">${escapeTextElement}</div>
                                 <footer class="tweet-footer">
@@ -114,13 +100,13 @@ const toggleTweetForm = (forceOpen) => {
     $("#newtweetform").slideUp(slideSpeed);            // close input form
     $("#submit").removeClass("shake");                 // css animation is a bit finiky to reset it, so remove it when possible
   }
-};  
+};
 
 
 //
-// process FLAGS on each tweet 
+// process FLAGS on each tweet
 //
-$(document).on("click", ".fa-flag", function(event){
+$(document).on("click", ".fa-flag", function(event) {
   const $aFlag = $(this).parent().find(".fa-flag");
   event.stopPropagation();                                        // ! QUESTION is stopPropagation to be used here - or needed?
   if ($aFlag.hasClass("redflag")) {
@@ -145,9 +131,9 @@ $(document).on("click", ".fa-flag", function(event){
 
 
 //
-// process HEARTS (likes) on each tweet 
+// process HEARTS (likes) on each tweet
 //
-$(document).on("click", ".fa-heart", function(){
+$(document).on("click", ".fa-heart", function() {
   const $aFlag = $(this).parent().find(".fa-heart");
   if ($aFlag.hasClass("redflag")) {
     $aFlag.removeClass("redflag");
@@ -159,7 +145,7 @@ $(document).on("click", ".fa-heart", function(){
   // update counter in circle-check-heart
   let likeCounter = 0;
   const likedTweets = $('.fa-heart');
-  for (var i = 0; i < likedTweets.length; i++) {
+  for (let i = 0; i < likedTweets.length; i++) {
     if ($(likedTweets[i]).hasClass("redflag")) {
       likeCounter ++;
     }
@@ -170,9 +156,9 @@ $(document).on("click", ".fa-heart", function(){
 
 
 //
-// process RETWEET on each tweet 
+// process RETWEET on each tweet
 //
-$(document).on("click", ".fa-retweet", function(){
+$(document).on("click", ".fa-retweet", function() {
   const $aFlag = $(this).parent().find(".fa-retweet");
 
   $aFlag.addClass("redflag");   // might already be set, but that's ok - not removing it as already 'retweeted'
@@ -184,7 +170,7 @@ $(document).on("click", ".fa-retweet", function(){
   $('#tweet-text').val(reTweetMessage);
   // scroll to top (form area)
   document.body.scrollIntoView(true);
-}); 
+});
 
 
 //
@@ -211,15 +197,15 @@ $(document).ready(function() {
     // if heart-circle-check is RED, & we click again, then we want to return to a default view of paginated tweets
     if ($(this).hasClass("redView")) {
       $(this).removeClass("redView");
-      for (var i = 0; i < likedTweets.length; i++) {
-          $(likedTweets[i]).parent().parent().parent().removeClass("hide");
+      for (let i = 0; i < likedTweets.length; i++) {
+        $(likedTweets[i]).parent().parent().parent().removeClass("hide");
       }
     } else {
       $(this).addClass("redView");
       $(".moreItems").addClass("hide");  // get rid of "more" pagination link
       // TODO - make this all a separate function that is called from document.read in this function - but separate so that
       // TODO - heart click can also call it to remove a tweet from view if unchecking heart while in the liked tweets only view
-      for (var i = 0; i < likedTweets.length; i++) {
+      for (let i = 0; i < likedTweets.length; i++) {
         if ($(likedTweets[i]).hasClass("redflag")) {                      // if hidden & has 'heart' set, show tweet
           $(likedTweets[i]).parent().parent().parent().removeClass("hide");
         } else {
@@ -238,7 +224,7 @@ $(document).ready(function() {
       $(".moreItems").addClass("hide");
       return;
     }
-    for(let x = 1; x < tweetsPerLoad + 1; x ++) {
+    for (let x = 1; x < tweetsPerLoad + 1; x ++) {
       // grab ID of numTotalUnreadTweets - tweetsOnDisplay
       // example, 40 total tweets, then tweetsOnDisplay = 30 (first run)
       // so on first click we want tweetsondisplay (id) to unhide with id - x;
@@ -248,10 +234,10 @@ $(document).ready(function() {
     totalTweetsRemaining -= tweetsPerLoad;
     tweetsOnDisplay = tweetsOnDisplay - tweetsPerLoad;  // TODO - clean this - am I using it with 'totalTweetsRemaining'?
     $("#more").attr("data-badge",totalTweetsRemaining);
-      if (totalTweetsRemaining < 1) {
-        $(".moreItems").addClass("hide");               // don't display "more" if there aren't any more!
-        tweetsOnDisplay = 0;
-      }
+    if (totalTweetsRemaining < 1) {
+      $(".moreItems").addClass("hide");               // don't display "more" if there aren't any more!
+      tweetsOnDisplay = 0;
+    }
   });
 
   // keep any error block closed

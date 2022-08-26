@@ -39,7 +39,6 @@ CSS for individual tweet-container
 }
 
 .tweet-layout:hover {
-  /* box-shadow: 0px 0px 20px rgba(0, 128, 128, 0.806); */
   filter: drop-shadow(0px 0px 20px rgba(0, 128, 128, 0.806));
 }
 
@@ -56,7 +55,6 @@ CSS for individual tweet-container
   flex-direction: row;
   width: 95%;
   justify-content: space-between;
-  align-items: center;
   font-size: 0.8em;
   margin-top: 5px;
   padding-top: 5px;
