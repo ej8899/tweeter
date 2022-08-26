@@ -22,8 +22,8 @@ html {
   --davys-grey: #505050ff;
   --persian-red:#d1342fff;
   --black-olive:#434038ff;
-  //--dutch-white:#eee3c1ff;
-  --dutch-white:rgb(179, 173, 156); // modified
+  //--dutch-white:#eee3c1ff;          // leaving this for reference to original theme color
+  --dutch-white:rgb(179, 173, 156); // modified color slightly
 }
 :root.dark {
   --bodybackgroundcolor: var(--eerie-black);
@@ -37,6 +37,7 @@ html {
   --headerbordercolor: var(--dutch-white);
   --errorboxcolor:  rgba(214, 207, 5, 0.675);
   --darkiconcolor: var(--eerie-black);
+  color-scheme: dark;
 }
 :root.light {
   --bodybackgroundcolor: rgba(73,143,143,0.536);
@@ -50,6 +51,7 @@ html {
   --headerbordercolor: rgb(3, 84, 84);
   --errorboxcolor:  rgba(255, 0, 0, 0.328);
   --darkiconcolor: var(--eerie-black);
+  color-scheme: light;
 }
 // set :root to same as .light more for our default to light mode
 :root {
@@ -64,6 +66,7 @@ html {
   --headerbordercolor: rgb(3, 84, 84);
   --errorboxcolor:  rgba(255, 0, 0, 0.328);
   --darkiconcolor: var(--eerie-black);
+  color-scheme: light;
 }
 
 

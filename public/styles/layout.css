@@ -35,6 +35,7 @@ html {
   --headerbordercolor: var(--dutch-white);
   --errorboxcolor: rgba(214, 207, 5, 0.675);
   --darkiconcolor: var(--eerie-black);
+  color-scheme: dark;
 }
 
 :root.light {
@@ -49,6 +50,7 @@ html {
   --headerbordercolor: rgb(3, 84, 84);
   --errorboxcolor: rgba(255, 0, 0, 0.328);
   --darkiconcolor: var(--eerie-black);
+  color-scheme: light;
 }
 
 :root {
@@ -63,6 +65,7 @@ html {
   --headerbordercolor: rgb(3, 84, 84);
   --errorboxcolor: rgba(255, 0, 0, 0.328);
   --darkiconcolor: var(--eerie-black);
+  color-scheme: light;
 }
 
 body {
