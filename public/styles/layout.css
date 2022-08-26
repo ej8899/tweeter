@@ -34,7 +34,7 @@ html {
   --titleglowcolor: teal;
   --headerbordercolor: var(--dutch-white);
   --errorboxcolor: rgba(214, 207, 5, 0.675);
-  color-scheme: dark;
+  --darkiconcolor: var(--eerie-black);
 }
 
 :root.light {
@@ -48,7 +48,7 @@ html {
   --titleglowcolor: #FD5901;
   --headerbordercolor: rgb(3, 84, 84);
   --errorboxcolor: rgba(255, 0, 0, 0.328);
-  color-scheme: light;
+  --darkiconcolor: var(--eerie-black);
 }
 
 :root {
@@ -62,7 +62,7 @@ html {
   --titleglowcolor: #FD5901;
   --headerbordercolor: rgb(3, 84, 84);
   --errorboxcolor: rgba(255, 0, 0, 0.328);
-  color-scheme: light;
+  --darkiconcolor: var(--eerie-black);
 }
 
 body {
@@ -116,6 +116,14 @@ main {
 }
 
 .icon:hover {
+  color: #FD5901;
+}
+
+.darkicon {
+  color: var(--darkiconcolor);
+}
+
+.darkicon:hover {
   color: #FD5901;
 }
 

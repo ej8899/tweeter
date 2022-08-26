@@ -18,7 +18,7 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 8. [Updates](#updates)
 --- 
 ## Features...  
-![](tweeterdemo.gif)
+![](tweeter-overview.gif)
 - Mobile & desktop friendly.
   - mobile view under 1024 pixels wide
   - footer adjustment under 550 pixels wide   
@@ -38,6 +38,7 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 - Added pagination to showing tweets - displays 10 at a time then link (with counter) to show next group (10 at a time).
 - Added count of liked tweets.
 - Added view only "liked (heart)" tweets (click again for normal view)  
+- Added dark (& light) mode toggle in header (sun/moon icon)
 [( back to top 🔺)](#tweeter)
 --- 
 ## Future Plans...
@@ -70,6 +71,8 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 
 - Tweeter is also built to support both 'desktop' and 'mobile' devices.  Down scaling your window will cause Tweeter to adjust for a more suitable display.   
 ![](image-tweeter-phone.jpg)  
+- Of course, we can't forget about everyone's favorite 'must-have' feature - dark mode! Just click or tap the sun/moon icon to switch!
+![](tweeter-lightdark.gif)  
 [( back to top 🔺)](#tweeter)
 --- 
 ## Known Bugs...

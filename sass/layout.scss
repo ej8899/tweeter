@@ -36,6 +36,7 @@ html {
   --titleglowcolor: teal;
   --headerbordercolor: var(--dutch-white);
   --errorboxcolor:  rgba(214, 207, 5, 0.675);
+  --darkiconcolor: var(--eerie-black);
 }
 :root.light {
   --bodybackgroundcolor: rgba(73,143,143,0.536);
@@ -48,6 +49,7 @@ html {
   --titleglowcolor: #FD5901;
   --headerbordercolor: rgb(3, 84, 84);
   --errorboxcolor:  rgba(255, 0, 0, 0.328);
+  --darkiconcolor: var(--eerie-black);
 }
 // set :root to same as .light more for our default to light mode
 :root {
@@ -61,6 +63,7 @@ html {
   --titleglowcolor: #FD5901;
   --headerbordercolor: rgb(3, 84, 84);
   --errorboxcolor:  rgba(255, 0, 0, 0.328);
+  --darkiconcolor: var(--eerie-black);
 }
 
 
@@ -114,6 +117,13 @@ main {
   color: var(--iconcolor);
 }
 .icon:hover {
+  color:#FD5901;
+}
+
+.darkicon {
+  color: var(--darkiconcolor);
+}
+.darkicon:hover {
   color:#FD5901;
 }
 
