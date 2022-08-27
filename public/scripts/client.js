@@ -8,6 +8,7 @@
 //  https://twitter.com/ejdevscom
 //
 
+
 //
 // global variables
 //
@@ -315,7 +316,7 @@ $(document).ready(function() {
   //
   loadTweets();
 
-  
+
   //
   // monitor scrolling so we can update for unread tweets
   //

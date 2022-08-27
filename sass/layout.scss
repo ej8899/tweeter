@@ -38,6 +38,7 @@ html {
   --errorboxcolor:  rgba(214, 207, 5, 0.675);
   --darkiconcolor: var(--eerie-black);
   color-scheme: dark;
+  
 }
 
 @mixin copyColors() {
@@ -63,6 +64,8 @@ html {
 :root {
   @include copyColors();
 }
+
+
 
 
 

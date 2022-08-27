@@ -30,7 +30,7 @@ CSS for individual tweet-container
   font-family: sans-serif;
   border-style: groove;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 60px 5px;
   border: 2px solid var(--wasteal);
   padding: 20px;
   margin-bottom: 20px;
