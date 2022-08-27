@@ -77,7 +77,8 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 --- 
 ## Known Bugs...
 - Return from liked tweets only" results in all tweets shown - pagination system breaks after this switch.
-- V. scroll bar is forced 'always' on' to prevent page shift if only a few tweets on page.  
+- Scroll bar is forced 'always' on' to prevent page shift if only a few tweets on page.  
+- Likes, Flags and Retweets are not persistent on page refresh.  
 [( back to top 🔺)](#tweeter)
 ---
 ## Attributions...
