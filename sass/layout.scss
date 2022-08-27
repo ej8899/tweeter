@@ -39,7 +39,8 @@ html {
   --darkiconcolor: var(--eerie-black);
   color-scheme: dark;
 }
-:root.light {
+
+@mixin copyColors() {
   --bodybackgroundcolor: rgba(73,143,143,0.536);
   --iconcolor: #545149;
   --tweetsbackgroundcolor: #e7cda2;
@@ -53,20 +54,14 @@ html {
   --darkiconcolor: var(--eerie-black);
   color-scheme: light;
 }
+
+:root.light {
+  @include copyColors();
+}
+
 // set :root to same as .light more for our default to light mode
 :root {
-  --bodybackgroundcolor: rgba(73,143,143,0.536);
-  --iconcolor: #545149;
-  --tweetsbackgroundcolor: #e7cda2;
-  --tweetcontentcolor: #545149c3;
-  --wasteal: teal;
-  --red: red;
-  --submitformcolor: #f3b860c9;
-  --titleglowcolor: #FD5901;
-  --headerbordercolor: rgb(3, 84, 84);
-  --errorboxcolor:  rgba(255, 0, 0, 0.328);
-  --darkiconcolor: var(--eerie-black);
-  color-scheme: light;
+  @include copyColors();
 }
 
 
