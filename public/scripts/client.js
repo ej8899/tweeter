@@ -13,6 +13,7 @@
 //
 let numTotalUnreadTweets = 0, inputFormState = 0, tweetsOnDisplay = 0, tweetsPerLoad = 10, totalTweetsRemaining = 0;
 
+
 // toggle to switch classes between .light and .dark
 // if no class is present (initial state), then assume current state based on system color scheme
 // if system color scheme is not supported, then assume current state is light
@@ -275,7 +276,7 @@ $(document).ready(function() {
     }
   });
 
-  // keep any error block closed
+  // start with any error block closed
   $("#error-block").hide();
 
   //
@@ -297,9 +298,7 @@ $(document).ready(function() {
     } else if (tweetLength === 0) {                       // error check for tweet EMPTY
       $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message is missing!");
       $("#error-block").slideDown(errorSlideDownSpeed);
-      
       $("#tweet-text").css("outline","2px solid var(--red)");
-      
     } else {                                              // error checks all good, allow post to submit
       const newTweet = $(this).serialize();
       $.post("/tweets/", newTweet, () => {                // https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
@@ -316,6 +315,7 @@ $(document).ready(function() {
   //
   loadTweets();
 
+  
   //
   // monitor scrolling so we can update for unread tweets
   //
