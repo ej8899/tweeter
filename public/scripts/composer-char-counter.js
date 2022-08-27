@@ -11,6 +11,7 @@ const maxTweetChars = 140;      // maximum characters allowed for 'tweets'.
 const errorSlideDownSpeed = 500;    // slider DOWN speed for error drop downs
 const errorSlideUpSpeed = 100;  // slider UP speed for error drop downs
 
+
 //
 // restartAnimation(element ID or Class)
 // reset CSS animation
@@ -28,12 +29,35 @@ const restartAnimation = (element) => {
   });
 };
 
+
+//
+// checkInputLength();
+// error check tweet input form length for # of chars - report error if too many
+//
+const checkInputLength = function() {
+  const inputChar = $('#tweet-text').val().length;
+  const charCounter = maxTweetChars - inputChar;
+  const $inputCounter = $('#tweet-text').parent().find(".counter");
+  $inputCounter.text(charCounter);
+  if (charCounter < 0) {
+    $inputCounter.addClass("toomanychars");
+    $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message is too long!");
+    $("#error-block").slideDown(errorSlideDownSpeed);
+  } else {
+    $inputCounter.removeClass("toomanychars");
+    $("#error-block").slideUp(errorSlideUpSpeed);
+    $("#tweet-text").css("outline","none");
+  }
+};
+
+
 //
 // randomNumer(5,98);
 // return a random number between min and max supplied values
 // from library at http://www.github.com/ej8899/conColors/
 //
 const randomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
 
 //
 //  fetchDadJoke() as a random tweet generator
@@ -64,21 +88,7 @@ const fetchDadJoke = function() {
 //
 $(document).ready(function() {
   $("#tweet-text").on("input", function() {                       // update character counter in tweet form
-    
-    const inputChar = $(this).val().length;
-    const charCounter = maxTweetChars - inputChar;
-    const $inputCounter = $(this).parent().find(".counter");
-
-    $inputCounter.text(charCounter);
-    if (charCounter < 0) {
-      $inputCounter.addClass("toomanychars");
-      $('#error-block').html("<i class=\"fa-solid fa-lg fa-beat-fade fa-circle-exclamation\"></i> Your Tweeter message is too long!");
-      $("#error-block").slideDown(errorSlideDownSpeed);
-    } else {
-      $inputCounter.removeClass("toomanychars");
-      $("#error-block").slideUp(errorSlideUpSpeed);
-      $("#tweet-text").css("outline","none");
-    }
+    checkInputLength();
   });
 
   //
@@ -91,6 +101,7 @@ $(document).ready(function() {
     }
     
     $('#tweet-text').val(theJoke);
+    checkInputLength();
     $("#error-block").hide();
     $("#tweet-text").css("outline","none");
     $("#submit").addClass("shake");
@@ -122,9 +133,8 @@ $(document).ready(function() {
     ];
     let rando = randomNumber(0,randomQuotes.length);
     
-  
-    
     $('#tweet-text').val(randomQuotes[rando]);
+    checkInputLength();
     $("#error-block").hide();
     $("#tweet-text").css("outline","none");
     $("#submit").addClass("shake");                 // css animation is a bit finiky to reset it
