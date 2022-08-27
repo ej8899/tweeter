@@ -58,6 +58,13 @@ const escapeText = function(str) {
 const renderTweets = (tweets) => {
   let extraClass = "";
   numTotalUnreadTweets = tweets.length;
+
+  $('#tweet-container').empty();          // empty the container to add in new after new a fetch.
+
+  if (tweets.length > 10) {
+    $("#moreitems").removeClass("hide");
+  }
+
   tweetsOnDisplay = numTotalUnreadTweets - tweetsPerLoad;
   for (let x = 0; x < tweets.length; x ++) {
     if (x < (tweets.length - tweetsPerLoad)) {
@@ -68,6 +75,7 @@ const renderTweets = (tweets) => {
     const tweet = createTweetElement(tweets[x],extraClass,x);
     $('#tweet-container').prepend(tweet);
   }
+  
   totalTweetsRemaining = tweets.length - tweetsPerLoad;
   $("#more").attr("data-badge",(totalTweetsRemaining));
 };
