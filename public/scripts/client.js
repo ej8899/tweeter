@@ -14,6 +14,7 @@
 //
 let numTotalUnreadTweets = 0, inputFormState = 0, tweetsOnDisplay = 0, tweetsPerLoad = 10, totalTweetsRemaining = 0;
 
+let statusDB = [];  // array of objects: { flag: true/false, heart:true/false, retweet:true/false } - index is tweet ID
 
 // toggle to switch classes between .light and .dark
 // if no class is present (initial state), then assume current state based on system color scheme
@@ -89,18 +90,27 @@ const renderTweets = (tweets) => {
 //
 const createTweetElement = (tweetData,extraClass,id) => {
   // timeago.format(1473245023718);                 // using timeago library - see index.html for SCRIPT link
+  let redflagStatus = '', redborderStatus = '', blurredtextStatus = '', redheartStatus = '';
   let timeStamp = timeago.format(tweetData.created_at);
   let escapeTextElement = escapeText(tweetData.content.text);
-  let tweetContainer = `      <article class="tweet-layout ${extraClass}" id="id-${id}">
+  if (statusDB[id].flag === true) {
+    redflagStatus = 'redflag';
+    redborderStatus = 'redborder';
+    blurredtextStatus = 'blurredtext';
+  }
+  if (statusDB[id].heart === true) {
+    redheartStatus = 'redflag';
+  }
+  let tweetContainer = `      <article class="tweet-layout ${extraClass} ${redborderStatus}" id="id-${id}">
                                 <div class="tweet-header">
                                   <div style="display: flex; justify-content: flex-start; align-items:center;"><div><IMG SRC="${tweetData.user.avatars}"></div><div style="padding-left:15px">${tweetData.user.name}</div></div>
                                   <div style="display: flex; align-items: center">${tweetData.user.handle}</div>
                                 </div>
-                                <div class="tweet-message">${escapeTextElement}</div>
+                                <div class="tweet-message ${blurredtextStatus}">${escapeTextElement}</div>
                                 <footer class="tweet-footer">
                                   <div>${timeStamp}</div> 
                                   <div>
-                                    <i class="fa-solid fa-flag icon tooltip"><span class="tooltiptext">file a complaint</span></i>&nbsp;<i class="fa-solid fa-retweet icon tooltip"><span class="tooltiptext">re-tweeter this</span></i>&nbsp;<i class="fa-solid fa-heart icon tooltip"><span class="tooltiptext">like this</span></i>
+                                    <i class="fa-solid fa-flag icon tooltip ${redflagStatus}"><span class="tooltiptext">file a complaint</span></i>&nbsp;<i class="fa-solid fa-retweet icon tooltip"><span class="tooltiptext">re-tweeter this</span></i>&nbsp;<i class="fa-solid fa-heart icon tooltip ${redheartStatus}"><span class="tooltiptext">like this</span></i>
                                   </div>
                                 </footer>
                             </article>`;
@@ -111,8 +121,22 @@ const createTweetElement = (tweetData,extraClass,id) => {
 //
 //  get tweets from server & render to page
 //
-const loadTweets = () => {
+const loadTweets = function() {
+  let statusObject = {};
   $.get("/tweets/", function(tweetData) {                 // https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
+
+    
+    for (let x = 0; x < tweetData.length; x++) {          // build our statusDB tracking database (in memory)
+      statusObject = {
+        flag: false,
+        heart: false,
+        retweet: false,
+      };
+      if(statusDB[x] === undefined) {
+        statusDB.push(statusObject);
+      }
+    }
+
     renderTweets(tweetData);
     $('#badge').html(Math.floor(numTotalUnreadTweets));   // update tweet count badge
   });
@@ -140,20 +164,30 @@ const toggleTweetForm = (forceOpen) => {
   }
 };
 
+//
+// parseID(string);
+// strips id- from input string and returns just the ID #
+//
+const parseID = (string) => {
+  return (string.replace(/id-/,""));
+};
 
 //
 // process FLAGS on each tweet
 //
 $(document).on("click", ".fa-flag", function(event) {
   const $aFlag = $(this).parent().find(".fa-flag");
+  let idNumber = parseID($(this).closest('.tweet-layout').attr('id'));  // for statusDB
+  
   event.stopPropagation();                                        // ! QUESTION is stopPropagation to be used here - or needed?
   if ($aFlag.hasClass("redflag")) {
     $aFlag.removeClass("redflag");
+    statusDB[idNumber].flag = false;
     $(this).parent().parent().parent().removeClass("redborder");  // ! QUESTION: what is best/better practice? this line or next?
     $(this).closest('.tweet-layout').children('.tweet-message').removeClass("blurredtext");
   } else {
+    statusDB[idNumber].flag = true;
     $aFlag.addClass("redflag");
-    
     $(this).parent().parent().parent().addClass("redborder");
     $(this).closest('.tweet-layout').children('.tweet-message').addClass("blurredtext");
   }
@@ -170,10 +204,13 @@ $(document).on("click", ".fa-flag", function(event) {
 //
 $(document).on("click", ".fa-heart", function() {
   const $aFlag = $(this).parent().find(".fa-heart");
+  let idNumber = parseID($(this).closest('.tweet-layout').attr('id'));  // for statusDB
   if ($aFlag.hasClass("redflag")) {
     $aFlag.removeClass("redflag");
+    statusDB[idNumber].heart = false;
   } else {
     $aFlag.addClass("redflag");  // also removeClass
+    statusDB[idNumber].heart = true;
   }
   
   // loop thru all posts, count # of checked HEARTS
@@ -234,9 +271,12 @@ $(document).ready(function() {
     // if heart-circle-check is RED, & we click again, then we want to return to a default view of paginated tweets
     if ($(this).hasClass("redView")) {
       $(this).removeClass("redView");
+      /*
       for (let i = 0; i < likedTweets.length; i++) {
         $(likedTweets[i]).parent().parent().parent().removeClass("hide");
       }
+      */
+      loadTweets();
     } else {
       $(this).addClass("redView");
       $(".moreItems").addClass("hide");  // get rid of "more" pagination link
