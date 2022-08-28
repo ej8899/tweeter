@@ -125,14 +125,13 @@ const loadTweets = function() {
   let statusObject = {};
   $.get("/tweets/", function(tweetData) {                 // https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
 
-    
     for (let x = 0; x < tweetData.length; x++) {          // build our statusDB tracking database (in memory)
       statusObject = {
         flag: false,
         heart: false,
         retweet: false,
       };
-      if(statusDB[x] === undefined) {
+      if (statusDB[x] === undefined) {
         statusDB.push(statusObject);
       }
     }
@@ -167,6 +166,7 @@ const toggleTweetForm = (forceOpen) => {
 //
 // parseID(string);
 // strips id- from input string and returns just the ID #
+// NOTE: CSS id's can't start with a number, so we need to strip any alpha prefix used.
 //
 const parseID = (string) => {
   return (string.replace(/id-/,""));
@@ -271,17 +271,11 @@ $(document).ready(function() {
     // if heart-circle-check is RED, & we click again, then we want to return to a default view of paginated tweets
     if ($(this).hasClass("redView")) {
       $(this).removeClass("redView");
-      /*
-      for (let i = 0; i < likedTweets.length; i++) {
-        $(likedTweets[i]).parent().parent().parent().removeClass("hide");
-      }
-      */
       loadTweets();
     } else {
       $(this).addClass("redView");
       $(".moreItems").addClass("hide");  // get rid of "more" pagination link
-      // TODO - make this all a separate function that is called from document.read in this function - but separate so that
-      // TODO - heart click can also call it to remove a tweet from view if unchecking heart while in the liked tweets only view
+
       for (let i = 0; i < likedTweets.length; i++) {
         if ($(likedTweets[i]).hasClass("redflag")) {                      // if hidden & has 'heart' set, show tweet
           $(likedTweets[i]).parent().parent().parent().removeClass("hide");
