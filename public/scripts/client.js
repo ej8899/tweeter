@@ -40,7 +40,7 @@ toggleDarkMode = function(option) {
   if (option === 'check') {
     if (localStorage.getItem('isDarkMode') === 'true') {
       $('#darkmodeswitch').prop('checked', true);
-      setTimeout(() => {
+      setTimeout(() => {    // fake delay IS required here
         addDark();
       }, 0);
     }
