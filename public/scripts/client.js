@@ -42,7 +42,7 @@ toggleDarkMode = function(option) {
       $('#darkmodeswitch').prop('checked', true);
       setTimeout(() => {
         addDark();
-      }, 100);
+      }, 0);
     }
     addLight();
     return;
@@ -276,7 +276,7 @@ $(document).on("click", ".fa-retweet", function() {
 //
 $(document).ready(function() {
 
-  toggleDarkMode('check');
+  toggleDarkMode('check');                            // check if user prefers dark mode (saved state)
   
   $("#floater").hide();                               // default to hide our 'floater' icon on page load
   
