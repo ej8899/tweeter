@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/styles/tweets-layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/page-footer.css" type="text/css" />
     <link rel="stylesheet" href="/styles/tooltips.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/sliderswitch.css" type="text/css" />
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -52,11 +53,12 @@
             <img src="/images/profile-dog.png">
         </div>
         <div class="h2">Ernie Johnson
-            <div class="h3">
+            <div class="h3" style="vertical-align: middle;">
                 <i class="fa-solid fa-heart-circle-check writenewlink tooltip darkicon">
                 <span class="tooltiptext">click to view only liked tweets</span></i>
                 <div id="heartcounter">(0)</div>&nbsp;&nbsp;|&nbsp;&nbsp;
-                <div><i class="fa-solid fa-moon writenewlink darkicon tooltip" id="daynightmode" onClick="toggleDarkMode()"><span class="tooltiptext">click to toggle light/dark mode</span></i></div>
+                <!--<div><i class="fa-solid fa-moon writenewlink darkicon tooltip" id="daynightmode" onClick="toggleDarkMode()"><span class="tooltiptext">click to toggle light/dark mode</span></i></div>-->
+                <div style="display:flex; flex-direction: row; align-items: center; justify-content: center;"><i class="fa-solid fa-moon darkicon" id="daynightmode"></i>&nbsp;<input type="checkbox" class="toggle" unchecked onclick="toggleDarkMode();"></div>
             </div>
         </div>
       </header>

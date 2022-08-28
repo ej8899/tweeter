@@ -54,6 +54,7 @@ html {
   --errorboxcolor:  rgba(255, 0, 0, 0.328);
   --darkiconcolor: var(--eerie-black);
   color-scheme: light;
+  transition: all .2s ease-in-out;
 }
 
 :root.light {
@@ -80,6 +81,7 @@ body {
   align-items: center;
   align-content: center;
   overflow: scroll;
+  transition: all .3s ease-in;
 }
 
 main {
