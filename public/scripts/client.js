@@ -43,6 +43,9 @@ toggleDarkMode = function(option) {
       setTimeout(() => {    // fake delay IS required here
         addDark();
       }, 0);
+      setTimeout(() => {    // minimize 'flash' when initially loading page
+        $('body').css('transition', 'all .3s ease-in');
+      }, 500);
     }
     addLight();
     return;
