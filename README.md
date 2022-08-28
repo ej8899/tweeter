@@ -71,8 +71,9 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 
 - Tweeter is also built to support both 'desktop' and 'mobile' devices.  Down scaling your window will cause Tweeter to adjust for a more suitable display.   
 ![](image-tweeter-phone.jpg)  
-- Of course, we can't forget about everyone's favorite 'must-have' feature - dark mode! Just click or tap the sun/moon icon to switch!
-![](tweeter-lightdark.gif)  
+- Of course, we can't forget about everyone's favorite 'must-have' feature - dark mode! Just click the switch to toggle.  
+Bonus: favorite state is preserved in localStorage.  
+![](tweeter-darkmode.gif)  
 [( back to top 🔺)](#tweeter)
 --- 
 ## Known Bugs...

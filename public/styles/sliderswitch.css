@@ -10,6 +10,23 @@ input[type=checkbox]:focus {
   outline: 0;
 }
 
+.darkmodeIconVisible {
+  transition: opacity 500ms;
+  opacity: 1;
+}
+
+.darkmodeIconInvisible {
+  transition: opacity 500ms;
+  opacity: 0.3;
+}
+
+.switchcontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .toggle {
   height: 22px;
   width: 42px;
