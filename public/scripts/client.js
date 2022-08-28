@@ -45,9 +45,13 @@ toggleDarkMode = function(option) {
       }, 0);
       setTimeout(() => {    // minimize 'flash' when initially loading page
         $('body').css('transition', 'all .3s ease-in');
-      }, 500);
+      }, 10);
+    } else {
+      addLight();
     }
-    addLight();
+    // remove any flash as we've hidden the page initially - BUT also needs transitions OFF (we add above after load)
+    $('body').css('visibility','visible');
+    $('body').css('opacity','1');
     return;
   }
 

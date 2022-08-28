@@ -79,6 +79,8 @@ body {
   align-items: center;
   align-content: center;
   overflow: scroll;
+  visibility: hidden;
+  opacity: 0;
 }
 
 main {
