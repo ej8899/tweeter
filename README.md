@@ -47,13 +47,13 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 [( back to top 🔺)](#tweeter)
 --- 
 ## Quick Start...  
-- Once you've cloned the repo to your computer, run ```npm start``` to enable the server side of Tweeter.
+- Once you've cloned the repo to your computer, run ```npm install``` to grab any dependencies.
+- Run ```npm start``` to enable the server side of Tweeter.
 - Open a browser to ```localhost:8080``` and Tweeter will be all set to to go!  
 [( back to top 🔺)](#tweeter)
 --- 
 ## Detailed Operation...  
-- Start your tweeter server from the command line with ```npm start```
-- Once that is running (it responds only with "Example app listening on port 8080), you can open a web browser window to ```localhost:8080``` to get started with Tweeter!
+- Clone the github repository to your computer, and follow the instructions above in Quick Start to get to where you can run Tweeter on your computer. 
 
 - From the main window, you can experiment with a few built in sample tweets, or start creating your own by clicking the double down chevrons in the top right to open the tweet message form.  We've incorporated extra features such as "like", "retweet" and "report" this tweet, along with tweet generators from the ICanHazDadJoke API and just a few random ones in our built in database. 
 ![](image-mainusing-desktop.png)
