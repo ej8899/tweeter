@@ -38,6 +38,7 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 - Added pagination to showing tweets - displays 10 at a time then link (with counter) to show next group (10 at a time).
 - Added count of liked tweets.
 - Added view only "liked (heart)" tweets (click again for normal view)  
+- Added 'bad words' obfuscation of tweets - user can click to reveal for 3 seconds
 - Added dark (& light) mode toggle in header (sun/moon icon)
 [( back to top 🔺)](#tweeter)
 --- 

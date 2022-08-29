@@ -13,13 +13,13 @@
 // global variables
 //
 let numTotalUnreadTweets = 0, inputFormState = 0, tweetsOnDisplay = 0, tweetsPerLoad = 10, totalTweetsRemaining = 0;
-
 let statusDB = [];  // array of objects: { flag: true/false, heart:true/false, retweet:true/false } - index is tweet ID
+const badWords = ["arse","peepee","trudeau","jabs"];
 
 // toggle to switch classes between .light and .dark
 // if no class is present (initial state), then assume current state based on system color scheme
 // if system color scheme is not supported, then assume current state is light
-toggleDarkMode = function(option) {
+const toggleDarkMode = function(option) {
   const addDark = () => {
     document.documentElement.classList.remove("light");
     document.documentElement.classList.add("dark");
@@ -124,14 +124,22 @@ const createTweetElement = (tweetData,extraClass,id) => {
   let redflagStatus = '', redborderStatus = '', blurredtextStatus = '', redheartStatus = '';
   let timeStamp = timeago.format(tweetData.created_at);
   let escapeTextElement = escapeText(tweetData.content.text);
-  if (statusDB[id].flag === true) {
+  if (statusDB[id].flag === true) {             // is this post flagged as offensive?
     redflagStatus = 'redflag';
     redborderStatus = 'redborder';
     blurredtextStatus = 'blurredtext';
   }
-  if (statusDB[id].heart === true) {
+  if (statusDB[id].heart === true) {            // is this post hearted / liked?
     redheartStatus = 'redflag';
   }
+
+  let badWordsFound = badWords.some(word => escapeTextElement.includes(word));
+  //alert(badWordsFound);
+  if (badWordsFound) {
+    redborderStatus = 'yellowborder';
+    blurredtextStatus = 'blurredtext';
+  }
+
   let tweetContainer = `      <article class="tweet-layout ${extraClass} ${redborderStatus}" id="id-${id}">
                                 <div class="tweet-header">
                                   <div style="display: flex; justify-content: flex-start; align-items:center;"><div><IMG SRC="${tweetData.user.avatars}"></div><div style="padding-left:15px">${tweetData.user.name}</div></div>
@@ -277,6 +285,16 @@ $(document).on("click", ".fa-retweet", function() {
   restartAnimation("#submit");
 });
 
+//
+// process click on 'badwords' flagged post - unblur the text for 3 seconds, then obscure it again
+//
+$(document).on("click",".yellowborder", function() {
+  $(this).closest('.tweet-layout').children('.tweet-message').removeClass("blurredtext");
+  setTimeout(() => {
+    $(this).closest('.tweet-layout').children('.tweet-message').addClass("blurredtext");
+  }, 3000);
+});
+
 
 //
 // START: document.ready HANDLER
@@ -296,7 +314,6 @@ $(document).ready(function() {
   $("#opentweet2").click(function() {                 // and the 'write a new tweet' text
     toggleTweetForm();
   });
-
 
   // get clicks on header heart-circle-check - filter only LIKED tweets
   $(".fa-heart-circle-check").click(function() {
@@ -352,7 +369,7 @@ $(document).ready(function() {
   // process form submission
   //
   $("#new-tweet-form").submit(function(event) {
-    event.preventDefault();
+    event.preventDefault();                               // https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
 
     // error check submission
     $("#error-block").slideUp(errorSlideUpSpeed);
