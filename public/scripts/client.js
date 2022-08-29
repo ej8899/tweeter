@@ -185,6 +185,7 @@ const loadTweets = function() {
     })
     .fail(function() {                                    // https://stackoverflow.com/questions/2175756/how-to-handle-error-in-get
       $(".criticalerror").removeClass("hide");
+      $(".criticalerrorMessage").text(jqxhr.statusText);
     });
 };
 
