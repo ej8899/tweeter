@@ -16,10 +16,14 @@ let numTotalUnreadTweets = 0, inputFormState = 0, tweetsOnDisplay = 0, tweetsPer
 let statusDB = [];  // array of objects: { flag: true/false, heart:true/false, retweet:true/false } - index is tweet ID
 const badWords = ["arse","peepee","trudeau","jabs"];
 
-// toggle to switch classes between .light and .dark
-// if no class is present (initial state), then assume current state based on system color scheme
-// if system color scheme is not supported, then assume current state is light
+//
+//  toggleDarkMode(option);
+//  toggle to switch classes between .light and .dark
+//  if no class is present (initial state), then assume current state based on system color scheme
+//  if (option) is "check", we're assuming initial load state and checking localStorage for a saved state from prior use
+//
 const toggleDarkMode = function(option) {
+  // internal helper functions:
   const addDark = () => {
     document.documentElement.classList.remove("light");
     document.documentElement.classList.add("dark");
@@ -36,6 +40,7 @@ const toggleDarkMode = function(option) {
     $("#nighticon").addClass("darkmodeIconVisible");
     $("#nighticon").removeClass("darkmodeIconInvisible");
   };
+
   // check localStorage to see if we have a dark preference & apply theme if so
   if (option === 'check') {
     if (localStorage.getItem('isDarkMode') === 'true') {
@@ -55,6 +60,7 @@ const toggleDarkMode = function(option) {
     return;
   }
 
+  // toggle themes
   if (document.documentElement.classList.contains("light")) {
     addDark();
   } else if (document.documentElement.classList.contains("dark")) {
@@ -120,7 +126,7 @@ const renderTweets = (tweets) => {
 //  take tweet object and return HTML <article>
 //
 const createTweetElement = (tweetData,extraClass,id) => {
-  // timeago.format(1473245023718);                 // using timeago library - see index.html for SCRIPT link
+  // timeago.format(1473245023718);             // using timeago library - see index.html for SCRIPT link
   let redflagStatus = '', redborderStatus = '', blurredtextStatus = '', redheartStatus = '';
   let timeStamp = timeago.format(tweetData.created_at);
   let escapeTextElement = escapeText(tweetData.content.text);
@@ -134,8 +140,7 @@ const createTweetElement = (tweetData,extraClass,id) => {
   }
 
   let badWordsFound = badWords.some(word => escapeTextElement.includes(word));
-  //alert(badWordsFound);
-  if (badWordsFound) {
+  if (badWordsFound) {                          // finding 'bad words' to 'censor'?
     redborderStatus = 'yellowborder';
     blurredtextStatus = 'blurredtext';
   }
@@ -162,6 +167,7 @@ const createTweetElement = (tweetData,extraClass,id) => {
 //
 const loadTweets = function() {
   let statusObject = {};
+
   let jqxhr = $.get("/tweets/", function(tweetData) {     // https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
     // primary success
     for (let x = 0; x < tweetData.length; x++) {          // build our statusDB tracking database (in memory)
@@ -171,24 +177,23 @@ const loadTweets = function() {
         retweet: false,
       };
       if (statusDB[x] === undefined) {
-        statusDB.push(statusObject);
+        statusDB.push(statusObject);                      // to 'preserve state' of flag/heart/rewteet icons during user session only
       }
     }
     renderTweets(tweetData);
     $('#badge').html(Math.floor(numTotalUnreadTweets));   // update tweet count badge
   })
-    .done(function() {                                    // second done function
-      
+    .done(function() {                                    // second done function (.get error handling)
+      // future use
     })
-    .always(function() {                                  // "always" runs - error or not
-      
+    .always(function() {                                  // "always" runs - error or not (.get error handling)
+      // future use
     })
     .fail(function() {                                    // https://stackoverflow.com/questions/2175756/how-to-handle-error-in-get
       $(".criticalerror").removeClass("hide");
       $(".criticalerrorMessage").text(jqxhr.statusText);
     });
 };
-
 
 
 //
@@ -212,6 +217,7 @@ const toggleTweetForm = (forceOpen) => {
   }
 };
 
+
 //
 // parseID(string);
 // strips id- from input string and returns just the ID #
@@ -220,6 +226,7 @@ const toggleTweetForm = (forceOpen) => {
 const parseID = (string) => {
   return (string.replace(/id-/,""));
 };
+
 
 //
 // process FLAGS on each tweet
@@ -232,7 +239,7 @@ $(document).on("click", ".fa-flag", function(event) {
   if ($aFlag.hasClass("redflag")) {
     $aFlag.removeClass("redflag");
     statusDB[idNumber].flag = false;
-    $(this).parent().parent().parent().removeClass("redborder");  // ! QUESTION: what is best/better practice? this line or next?
+    $(this).parent().parent().parent().removeClass("redborder");  // ! NOTE best practice is next line -this line breaks if we change tweet layout structure
     $(this).closest('.tweet-layout').children('.tweet-message').removeClass("blurredtext");
   } else {
     statusDB[idNumber].flag = true;
@@ -240,11 +247,6 @@ $(document).on("click", ".fa-flag", function(event) {
     $(this).parent().parent().parent().addClass("redborder");
     $(this).closest('.tweet-layout').children('.tweet-message').addClass("blurredtext");
   }
-  // HOW TO continue this process:
-  // let's add another class which is unique ID for this message so we can reference it
-  // so we have class fa-flag IDxxx (xxx is the unique number)
-  // then strip like so: messageId = $(this).attr('class') // then extract the "IDxxx",strip ID and process on the ID #.
-  // this ID would then get passed back to sever as reported for algorithm to deal with, or someone to review.
 });
 
 
@@ -285,15 +287,14 @@ $(document).on("click", ".fa-retweet", function() {
   $aFlag.addClass("redflag");   // might already be set, but that's ok - not removing it as already 'retweeted'
   // get message out of tweets-message class container
   let reTweetMessage = $(this).closest('.tweet-layout').children('.tweet-message').text();
-  // slide open tweet form
-  toggleTweetForm(true);        // force tweet window open
-  // populate it
-  $('#tweet-text').val(reTweetMessage);
-  // scroll to top (form area)
-  document.body.scrollIntoView(true);
-  $("#submit").addClass("shake");                 // css animation is a bit finiky to reset it
+
+  toggleTweetForm(true);                  // force tweet window open
+  $('#tweet-text').val(reTweetMessage);   // populate it
+  document.body.scrollIntoView(true);     // scroll to top (form area)
+  $("#submit").addClass("shake");         // css animation is a bit finiky to reset it
   restartAnimation("#submit");
 });
+
 
 //
 // process click on 'badwords' flagged post - unblur the text for 3 seconds, then obscure it again
@@ -350,7 +351,6 @@ $(document).ready(function() {
   // process "more" tweets to load
   $("#more").click(function() {
     // see how many tweetsOnDisplay
-    // numTotalUnreadTweets
     // remember we have to count backwards as we're prepending tweets to top of list - not bottom!
     if (totalTweetsRemaining < 1) {
       $(".moreItems").addClass("hide");
@@ -405,12 +405,10 @@ $(document).ready(function() {
     }
   });
 
-
   //
   // render our page of all tweets in database
   //
   loadTweets();
-
 
   //
   // monitor scrolling so we can update for unread tweets

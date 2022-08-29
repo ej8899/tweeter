@@ -22,7 +22,7 @@ const errorSlideUpSpeed = 100;  // slider UP speed for error drop downs
 const restartAnimation = (element) => {
   let animatedElement = document.querySelector(element);
   animatedElement.style.animationName = "none";
-  requestAnimationFrame(() => {           // http://www.javascriptkit.com/javatutors/requestanimationframe.shtml
+  requestAnimationFrame(() => {                 // http://www.javascriptkit.com/javatutors/requestanimationframe.shtml
     setTimeout(() => {
       animatedElement.style.animationName = "";
     }, 0);
