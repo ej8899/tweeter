@@ -162,8 +162,8 @@ const createTweetElement = (tweetData,extraClass,id) => {
 //
 const loadTweets = function() {
   let statusObject = {};
-  $.get("/tweets/", function(tweetData) {                 // https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
-
+  let jqxhr = $.get("/tweets/", function(tweetData) {     // https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
+    // primary success
     for (let x = 0; x < tweetData.length; x++) {          // build our statusDB tracking database (in memory)
       statusObject = {
         flag: false,
@@ -174,11 +174,20 @@ const loadTweets = function() {
         statusDB.push(statusObject);
       }
     }
-
     renderTweets(tweetData);
     $('#badge').html(Math.floor(numTotalUnreadTweets));   // update tweet count badge
-  });
+  })
+    .done(function() {                                    // second done function
+      
+    })
+    .always(function() {                                  // "always" runs - error or not
+      
+    })
+    .fail(function() {                                    // https://stackoverflow.com/questions/2175756/how-to-handle-error-in-get
+      $(".criticalerror").removeClass("hide");
+    });
 };
+
 
 
 //
@@ -187,18 +196,18 @@ const loadTweets = function() {
 //
 const toggleTweetForm = (forceOpen) => {
   const slideSpeed = 300;
-  if (forceOpen === true) {                             // ! we can also use: if ($("#newtweetform").is(":visible") == true) {}
-    inputFormState = 0;                                // 0 closed, 1 open
+  if (forceOpen === true) {                               // ! we can also use: if ($("#newtweetform").is(":visible") == true) {}
+    inputFormState = 0;                                   // 0 closed, 1 open
   }
   if (inputFormState === 0) {
-    $("#submit").removeClass("shake");                 // css animation is a bit finiky to reset it, so remove it when possible
-    $("#newtweetform").slideDown(slideSpeed);          // open input form
-    $("#tweet-text").focus();                          // give form input FOCUS
+    $("#submit").removeClass("shake");                    // css animation is a bit finiky to reset it, so remove it when possible
+    $("#newtweetform").slideDown(slideSpeed);             // open input form
+    $("#tweet-text").focus();                             // give form input FOCUS
     inputFormState = 1;
   } else {
     inputFormState = 0;
-    $("#newtweetform").slideUp(slideSpeed);            // close input form
-    $("#submit").removeClass("shake");                 // css animation is a bit finiky to reset it, so remove it when possible
+    $("#newtweetform").slideUp(slideSpeed);               // close input form
+    $("#submit").removeClass("shake");                    // css animation is a bit finiky to reset it, so remove it when possible
   }
 };
 
