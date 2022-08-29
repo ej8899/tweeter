@@ -70,6 +70,10 @@ CSS for individual tweet-container
   border: 2px solid var(--red);
 }
 
+.yellowborder {
+  border: 2px solid yellow;
+}
+
 .blurredtext {
   color: transparent;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
