@@ -39,7 +39,7 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 - Added count of liked tweets.
 - Added view only "liked (heart)" tweets (click again for normal view)  
 - Added 'bad words' obfuscation of tweets - user can click to reveal for 3 seconds
-- Added dark (& light) mode toggle in header (sun/moon icon)
+- Added dark (& light) mode toggle in header (sun/moon icon)  
 [( back to top 🔺)](#tweeter)
 --- 
 ## Future Plans...
