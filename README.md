@@ -43,7 +43,7 @@ It is derived from the <a href="www.lighthouselabs.ca">Lighthouse Labs</a> (LHL)
 [( back to top 🔺)](#tweeter)
 --- 
 ## Future Plans...
-- update 'dad joke' API fetch to be asychnronous  
+- update 'dad joke' API fetch to be asychnronous  (done 2022-09-03)
 [( back to top 🔺)](#tweeter)
 --- 
 ## Quick Start...  
