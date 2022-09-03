@@ -78,8 +78,6 @@ const fetchDadJoke =  function() {
     // NOTE use different than success: and error: when using async false - see jqXHR object for details
     // (SEE commented async: false version below)
     success: function(data) {
-      //alert("data.joke:" + data.joke);
-      
       if (data.joke.length > maxTweetChars) {                         // TODO: any errors we should check for?
         theJoke = "No jokes available right now.";
         $('#tweet-text').val(theJoke);
