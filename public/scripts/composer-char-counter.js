@@ -63,6 +63,42 @@ const randomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min
 //  fetchDadJoke() as a random tweet generator
 //  uses API at icanhazdadjoke.com
 //
+const fetchDadJoke =  function() {
+  const apiEndPoint = "https://icanhazdadjoke.com/";
+  let jqXHR;
+
+  jqXHR = $.ajax({
+    async: true,                                           // CAUTION: false not the ideal method being used here!  figure out ASYNC!
+    url: apiEndPoint,
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader("User-Agent","https://github.com/ej8899/tweeter"); // TODO - this does NOT work - find out how to fix it!!
+    },
+    contentType: "application/json",
+    dataType: 'json',
+    // NOTE use different than success: and error: when using async false - see jqXHR object for details
+    // (SEE commented async: false version below)
+    success: function(data) {
+      //alert("data.joke:" + data.joke);
+      
+      if (data.joke.length > maxTweetChars) {                         // TODO: any errors we should check for?
+        theJoke = "No jokes available right now.";
+        $('#tweet-text').val(theJoke);
+        return;
+      }
+      $('#tweet-text').val(data.joke);
+      checkInputLength();
+      $("#error-block").hide();
+      $("#tweet-text").css("outline","none");
+      $("#submit").addClass("shake");
+      restartAnimation("#submit");
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      $('#tweet-text').val("Dad joke API failed, try again in a few seconds!");
+    }
+  });
+};
+
+/*
 const fetchDadJoke = function() {
   const apiEndPoint = "https://icanhazdadjoke.com/";
 
@@ -80,6 +116,7 @@ const fetchDadJoke = function() {
   let response = JSON.parse(jqXHR.responseText);            // REFERENCE: https://www.sitepoint.com/jqxhr-object/
   return (response.joke);
 };
+*/
 
 
 //
@@ -95,17 +132,8 @@ $(document).ready(function() {
   // user wants a dad joke
   //
   $("#dadjoke").click(function() {
-    let theJoke = fetchDadJoke();
-    if (theJoke.length > maxTweetChars) {                         // TODO: any errors we should check for?
-      theJoke = "No jokes available right now.";
-    }
-    
-    $('#tweet-text').val(theJoke);
-    checkInputLength();
-    $("#error-block").hide();
-    $("#tweet-text").css("outline","none");
-    $("#submit").addClass("shake");
-    restartAnimation("#submit");
+    // let theJoke = fetchDadJoke();
+    fetchDadJoke();
   });
 
   //
